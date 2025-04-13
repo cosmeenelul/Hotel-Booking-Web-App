@@ -1,21 +1,120 @@
 package com.example.AdminDashboard.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "tblrezervaricamere")
+@Table(name = "tblrezervari")
 public class Rezervare {
+
+    // Coloane tabel
+
     @Id
-    private Integer nrCamera;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idrezervare")
+    private Integer idRezervare;
 
-    public void setNrCamera(Integer nrCamera) {
-        this.nrCamera = nrCamera;
+    @Column(name = "adulti")
+    private Integer adulti;
+
+    @Column(name = "datacheckin")
+    private LocalDate dataCheckIn;
+
+    @Column(name = "datacheckout")
+    private LocalDate dataCheckOut;
+
+    @Column(name = "total")
+    private Double total;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tblrezervaricamere",
+            joinColumns = @JoinColumn(name = "idrezervare"),
+            inverseJoinColumns = @JoinColumn(name = "nrcamera")
+    )
+    private List<Camera> camere;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tblrezervarioaspeti",
+            joinColumns = @JoinColumn(name = "idrezervare"),
+            inverseJoinColumns = @JoinColumn(name = "idoaspete")
+    )
+    private List<Oaspete> oaspeti;
+
+    public Rezervare(){}
+
+    public Rezervare(Integer idRezervare, Integer adulti, LocalDate dataCheckIn, LocalDate dataCheckOut, Double total, List<Camera> camere, List<Oaspete> oaspeti) {
+        this.idRezervare = idRezervare;
+        this.adulti = adulti;
+        this.dataCheckIn = dataCheckIn;
+        this.dataCheckOut = dataCheckOut;
+        this.total = total;
+        this.camere = camere;
+        this.oaspeti = oaspeti;
     }
 
-    public Integer getNrCamera() {
-        return nrCamera;
+    // Getters Setters
+
+
+    public void setIdRezervare(Integer idRezervare) {
+        this.idRezervare = idRezervare;
     }
+
+    public Integer getIdRezervare() {
+        return idRezervare;
+    }
+
+    public Integer getAdulti() {
+        return adulti;
+    }
+
+    public void setAdulti(Integer adulti) {
+        this.adulti = adulti;
+    }
+
+    public LocalDate getDataCheckOut() {
+        return dataCheckOut;
+    }
+
+    public void setDataCheckOut(LocalDate dataCheckOut) {
+        this.dataCheckOut = dataCheckOut;
+    }
+
+    public LocalDate getDataCheckIn() {
+        return dataCheckIn;
+    }
+
+    public void setDataCheckIn(LocalDate dataCheckIn) {
+        this.dataCheckIn = dataCheckIn;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public List<Camera> getCamere() {
+        return camere;
+    }
+
+    public void setCamere(List<Camera> camere) {
+        this.camere = camere;
+    }
+
+    public List<Oaspete> getOaspeti() {
+        return oaspeti;
+    }
+
+    public void setOaspeti(List<Oaspete> oaspeti) {
+        this.oaspeti = oaspeti;
+    }
+
+
 }

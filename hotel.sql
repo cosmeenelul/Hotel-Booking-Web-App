@@ -33,8 +33,7 @@ INSERT INTO tblOaspeti (nume, prenume, strada, oras, tara, telefon) VALUES
 
 CREATE TABLE tblRezervari(
 	  idRezervare int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	  adulti int(11) NOT NULL,
-	  copii int(11) NOT NULL,
+	  persoane int(11) NOT NULL,
 	  dataCheckIn date DEFAULT NULL,
 	  dataCheckOut date DEFAULT NULL,
 	  total DOUBLE NOT NULL
@@ -43,17 +42,17 @@ CREATE TABLE tblRezervari(
 ALTER TABLE tblRezervari AUTO_INCREMENT=1;
 
 
-INSERT INTO tblRezervari (adulti, copii, dataCheckIn, dataCheckOut, total) VALUES
-(2, 1, '2025-05-01', '2025-05-05', 850.00),
-(1, 0, '2025-06-10', '2025-06-12', 400.00),
-(3, 2, '2025-07-15', '2025-07-20', 1250.00),
-(2, 0, '2025-04-20', '2025-04-22', 500.00),
-(4, 3, '2025-08-01', '2025-08-07', 2200.00),
-(1, 1, '2025-05-18', '2025-05-21', 600.00),
-(2, 2, '2025-09-05', '2025-09-10', 980.00),
-(3, 1, '2025-10-12', '2025-10-15', 750.00),
-(2, 0, '2025-11-01', '2025-11-03', 420.00),
-(1, 2, '2025-12-20', '2025-12-25', 890.00);
+INSERT INTO tblRezervari (persoane, dataCheckIn, dataCheckOut, total) VALUES
+(2,'2025-05-01', '2025-05-05', 850.00),
+(1,'2025-06-10', '2025-06-12', 400.00),
+(3,'2025-07-15', '2025-07-20', 1250.00),
+(2,'2025-04-20', '2025-04-22', 500.00),
+(4,'2025-08-01', '2025-08-07', 2200.00),
+(1, '2025-05-18', '2025-05-21', 600.00),
+(2, '2025-09-05', '2025-09-10', 980.00),
+(3, '2025-10-12', '2025-10-15', 750.00),
+(2, '2025-11-01', '2025-11-03', 420.00),
+(1, '2025-12-20', '2025-12-25', 890.00);
 
 
 CREATE TABLE tblRezervariOaspeti (
