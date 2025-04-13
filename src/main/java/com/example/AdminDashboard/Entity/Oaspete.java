@@ -3,6 +3,8 @@ package com.example.AdminDashboard.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tbloaspeti")
 public class Oaspete {
@@ -29,6 +31,9 @@ public class Oaspete {
 
     @Column(name="telefon")
     private String telefon;
+
+    @ManyToMany(mappedBy = "oaspeti")
+    private List<Rezervare> rezervari;
 
     public Oaspete(){}
 

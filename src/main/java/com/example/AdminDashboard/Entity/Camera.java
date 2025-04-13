@@ -3,6 +3,8 @@ package com.example.AdminDashboard.Entity;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Entity
 @Table(name="tblcamere")
 public class Camera {
@@ -21,6 +23,9 @@ public class Camera {
 
     @Column(name="pretpenoapte")
     private Double pretPeNoapte;
+
+    @ManyToMany(mappedBy = "camere")
+    private List<Rezervare> rezervari;
 
     public Camera(){}
 
