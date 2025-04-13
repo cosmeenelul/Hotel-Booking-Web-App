@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CamereService {
 
-    CamereRepository camereRepository;
+    private final CamereRepository camereRepository;
 
     public CamereService(CamereRepository camereRepository)
     {
