@@ -1,0 +1,33 @@
+package com.example.AdminDashboard.Controller;
+
+
+import com.example.AdminDashboard.Entity.Camera;
+import com.example.AdminDashboard.Service.CamereService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "/camere")
+public class RoomController {
+
+    private final CamereService camereService;
+
+    public RoomController(CamereService camereService) {
+        this.camereService = camereService;
+    }
+
+    @GetMapping("/toateCamerele")
+    public List<Camera> findAll()
+    {
+        for(Camera camera: camereService.findAll())
+        {
+            System.out.println(camera.toString());
+        }
+        return camereService.findAll();
+
+    }
+}
