@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class OaspetiService {
 
-    public OaspetiRepository oaspetiRepository;
+    private final OaspetiRepository oaspetiRepository;
 
     public OaspetiService(OaspetiRepository oaspetiRepository)
     {

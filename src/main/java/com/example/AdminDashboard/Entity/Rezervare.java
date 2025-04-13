@@ -17,8 +17,8 @@ public class Rezervare {
     @Column(name = "idrezervare")
     private Integer idRezervare;
 
-    @Column(name = "adulti")
-    private Integer adulti;
+    @Column(name = "persoane")
+    private Integer persoane;
 
     @Column(name = "datacheckin")
     private LocalDate dataCheckIn;
@@ -47,9 +47,9 @@ public class Rezervare {
 
     public Rezervare(){}
 
-    public Rezervare(Integer idRezervare, Integer adulti, LocalDate dataCheckIn, LocalDate dataCheckOut, Double total, List<Camera> camere, List<Oaspete> oaspeti) {
+    public Rezervare(Integer idRezervare, Integer persoane, LocalDate dataCheckIn, LocalDate dataCheckOut, Double total, List<Camera> camere, List<Oaspete> oaspeti) {
         this.idRezervare = idRezervare;
-        this.adulti = adulti;
+        this.persoane = persoane;
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.total = total;
@@ -68,12 +68,12 @@ public class Rezervare {
         return idRezervare;
     }
 
-    public Integer getAdulti() {
-        return adulti;
+    public Integer getPersoane() {
+        return persoane;
     }
 
-    public void setAdulti(Integer adulti) {
-        this.adulti = adulti;
+    public void setPersoane(Integer persoane) {
+        this.persoane = persoane;
     }
 
     public LocalDate getDataCheckOut() {
