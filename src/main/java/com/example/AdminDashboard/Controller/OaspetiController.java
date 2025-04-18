@@ -1,11 +1,12 @@
 package com.example.AdminDashboard.Controller;
 
 
+import com.example.AdminDashboard.DTO.OaspeteDTO;
 import com.example.AdminDashboard.Entity.Oaspete;
 import com.example.AdminDashboard.Service.OaspetiService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,15 +15,26 @@ import java.util.List;
 public class OaspetiController {
     private final OaspetiService oaspetiService;
 
+
     public OaspetiController(OaspetiService oaspetiService)
     {
         this.oaspetiService = oaspetiService;
     }
 
     @GetMapping("/totiOaspetii")
-    public List<Oaspete> findAll()
+    public List<OaspeteDTO> findAll()
     {
         return oaspetiService.findAll();
     }
 
+    @PostMapping("/addOaspete")
+    public ResponseEntity<?> addOaspete(@RequestBody OaspeteDTO oaspeteDTO)
+    {
+        if(oaspetiService.existsByTelefon(oaspeteDTO.getTelefon()))
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Persoană deja existentă");
+        }
+        Oaspete oaspeteSalvat = oaspetiService.save(oaspeteDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(oaspeteSalvat);
+    }
 }

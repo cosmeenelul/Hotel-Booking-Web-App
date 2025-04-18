@@ -1,12 +1,14 @@
 package com.example.AdminDashboard.Controller;
 
 
+import com.example.AdminDashboard.DTO.RezervareCreateDTO;
+import com.example.AdminDashboard.DTO.RezervareResponseDTO;
+import com.example.AdminDashboard.Entity.Camera;
 import com.example.AdminDashboard.Entity.Rezervare;
-import com.example.AdminDashboard.Repository.RezervariRepository;
+import com.example.AdminDashboard.DTO.DetaliiRezervare;
 import com.example.AdminDashboard.Service.RezervariService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +25,21 @@ public class RezervariController {
 
 
     @GetMapping("/toateRezervarile")
-    public List<Rezervare> findAll()
+    public List<RezervareResponseDTO> findAll()
     {
         return rezervariService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public RezervareResponseDTO findById(@PathVariable Integer id)
+    {
+        return rezervariService.findById(id);
+    }
+
+    @PostMapping("/addRezervare")
+    public RezervareCreateDTO createRezervare(@RequestBody RezervareCreateDTO rezervareCreateDTO)
+    {
+        return rezervariService.saveRezervare(rezervareCreateDTO);
+    }
 }
+
