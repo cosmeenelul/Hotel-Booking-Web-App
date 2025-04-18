@@ -5,6 +5,39 @@ CREATE DATABASE hotelDB;
 
 USE hotelDB;
 
+
+CREATE TABLE tblCamere (
+	  nrCamera int(11) NOT NULL PRIMARY KEY,
+	  tipCamera varchar(10) NOT NULL,
+	  nrPersoaneStandard int(11) NOT NULL,
+	  pretPeNoapte double NOT NULL
+) ENGINE=InnoDB;
+
+
+
+INSERT INTO  tblCamere (nrCamera, tipCamera, nrPersoaneStandard, pretPeNoapte) VALUES
+(201, 'Double',2, 199.99),
+(202, 'Double',2, 174.99),
+(203, 'Double',2, 199.99),
+(204, 'Double',2, 174.99),
+(205, 'Single',2, 174.99),
+(206, 'Single',2, 149.99),
+(207, 'Single',2, 174.99),
+(208, 'Single',2, 149.99),
+(301, 'Double',2, 199.99),
+(302, 'Double',2, 174.99),
+(303, 'Double', 2, 199.99),
+(304, 'Double', 2, 174.99),
+(305, 'Single',2, 174.99),
+(306, 'Single',2, 149.99),
+(307, 'Single',2, 174.99),
+(308, 'Single',2, 149.99),
+(401, 'Suite',3, 399.99),
+(402, 'Suite', 3, 399.99),
+(501, 'Family', 4, 399.99),
+(502, 'Family', 4, 399.99);
+
+
 CREATE TABLE tblOaspeti (
 	  idOaspete int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	  nume VARCHAR(30) NOT NULL,
@@ -30,88 +63,56 @@ INSERT INTO tblOaspeti (nume, prenume, strada, oras, tara, telefon) VALUES
 ('Ciobanu', 'Lucian', 'Str. Gării 15', 'Brăila', 'RO', '0790123456'),
 ('Neagu', 'Anca', 'Str. Nouă 10', 'Bacău', 'RO', '0710123456');
 
+CREATE TABLE tblPlati (
+  idPlata INT PRIMARY KEY AUTO_INCREMENT,
+  dataPlata DATE NOT NULL,
+  metoda VARCHAR(20)
+);
+
+ALTER TABLE tblPlati AUTO_INCREMENT = 1;
+
+INSERT INTO tblPlati(dataPlata,metoda) VALUES
+('2025-05-05','cash'),
+('2025-05-02','card'),
+('2025-05-15','card'),
+('2025-04-22','cash'),
+('2025-08-07','cash'),
+('2025-02-14','card'),
+('2025-09-10','cash'),
+('2025-10-15','cash'),
+('2025-05-13','card'),
+('2025-08-10','card')
+;
+
 
 CREATE TABLE tblRezervari(
 	  idRezervare int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	  idOaspete	int(11) NOT NULL,
 	  persoane int(11) NOT NULL,
 	  dataCheckIn date DEFAULT NULL,
 	  dataCheckOut date DEFAULT NULL,
-	  total DOUBLE NOT NULL
+	  total DOUBLE NOT NULL,
+	  idPlata	int NOT NULL,
+	  CONSTRAINT fk_plata foreign key (idPlata) REFERENCES tblPlati(idPlata)
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	  CONSTRAINT fk_oaspete foreign key (idOaspete) REFERENCES tblOaspeti(idOaspete)
+		ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 ALTER TABLE tblRezervari AUTO_INCREMENT=1;
 
 
-INSERT INTO tblRezervari (persoane, dataCheckIn, dataCheckOut, total) VALUES
-(2,'2025-05-01', '2025-05-05', 850.00),
-(1,'2025-06-10', '2025-06-12', 400.00),
-(3,'2025-07-15', '2025-07-20', 1250.00),
-(2,'2025-04-20', '2025-04-22', 500.00),
-(4,'2025-08-01', '2025-08-07', 2200.00),
-(1, '2025-05-18', '2025-05-21', 600.00),
-(2, '2025-09-05', '2025-09-10', 980.00),
-(3, '2025-10-12', '2025-10-15', 750.00),
-(2, '2025-11-01', '2025-11-03', 420.00),
-(1, '2025-12-20', '2025-12-25', 890.00);
-
-
-CREATE TABLE tblRezervariOaspeti (
-	  idOaspete int(11) NOT NULL,
-	  idRezervare int(11) NOT NULL,
-	  PRIMARY KEY(idOaspete,idRezervare),
-      CONSTRAINT fk_idOaspete FOREIGN KEY (idOaspete) REFERENCES tblOaspeti(idOaspete) 
-      ON DELETE CASCADE ON UPDATE CASCADE,
-      CONSTRAINT fk_idRezervareOaspete FOREIGN KEY (idRezervare) REFERENCES tblRezervari(idRezervare) 
-      ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
-
-INSERT INTO tblRezervariOaspeti(idOaspete, idRezervare) VALUES
-(1,1),
-(2,2),
-(3,3),
-(4,4),
-(5,5),
-(5,6),
-(7,7),
-(7,8),
-(9,9),
-(9,10)
-;
-
-
-CREATE TABLE tblCamere (
-	  nrCamera int(11) NOT NULL PRIMARY KEY,
-	  tipCamera varchar(10) NOT NULL,
-	  esteOcupata bool NOT NULL,
-	  nrPersoaneStandard int(11) NOT NULL,
-	  pretPeNoapte double NOT NULL
-) ENGINE=InnoDB;
-
-
-
-INSERT INTO  tblCamere (nrCamera, tipCamera, esteOcupata, nrPersoaneStandard, pretPeNoapte) VALUES
-(201, 'Double', 0, 2, 199.99),
-(202, 'Double', 0, 2, 174.99),
-(203, 'Double', 0, 2, 199.99),
-(204, 'Double', 0, 2, 174.99),
-(205, 'Single', 0, 2, 174.99),
-(206, 'Single', 0, 2, 149.99),
-(207, 'Single', 0, 2, 174.99),
-(208, 'Single', 0, 2, 149.99),
-(301, 'Double', 0, 2, 199.99),
-(302, 'Double', 0, 2, 174.99),
-(303, 'Double', 0, 2, 199.99),
-(304, 'Double', 0, 2, 174.99),
-(305, 'Single', 0, 2, 174.99),
-(306, 'Single', 0, 2, 149.99),
-(307, 'Single', 0, 2, 174.99),
-(308, 'Single', 0, 2, 149.99),
-(401, 'Suite', 0, 3, 399.99),
-(402, 'Suite', 0, 3, 399.99),
-(501, 'Family', 0, 4, 399.99),
-(502, 'Family', 0, 4, 399.99);
-
+INSERT INTO tblRezervari (persoane, idOaspete,dataCheckIn, dataCheckOut, total,idPlata) VALUES
+(2,1,'2025-05-01', '2025-05-05', 850.00,1),
+(1,2,'2025-06-10', '2025-06-12', 400.00,2),
+(3,3,'2025-07-15', '2025-07-20', 1250.00,3),
+(2,4,'2025-04-20', '2025-04-22', 500.00,4),
+(4,5,'2025-08-01', '2025-08-07', 2200.00,5),
+(1,5, '2025-05-18', '2025-05-21', 600.00,6),
+(2,7, '2025-09-05', '2025-09-10', 980.00,7),
+(3,7, '2025-10-12', '2025-10-15', 750.00,8),
+(2,9, '2025-11-01', '2025-11-03', 420.00,9),
+(1,10, '2025-12-20', '2025-12-25', 890.00,10);
 
 
 CREATE TABLE tblRezervariCamere (

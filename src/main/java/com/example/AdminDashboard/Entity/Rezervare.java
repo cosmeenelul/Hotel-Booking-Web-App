@@ -1,6 +1,7 @@
 package com.example.AdminDashboard.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class Rezervare {
     // Coloane tabel
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idrezervare")
     private Integer idRezervare;
 
@@ -29,6 +30,9 @@ public class Rezervare {
     @Column(name = "total")
     private Double total;
 
+    @Column(name ="codrezervare", unique = true)
+    private String codRezervare;
+
     @ManyToMany
     @JoinTable(
             name = "tblrezervaricamere",
@@ -37,24 +41,26 @@ public class Rezervare {
     )
     private List<Camera> camere;
 
-    @ManyToMany
-    @JoinTable(
-            name = "tblrezervarioaspeti",
-            joinColumns = @JoinColumn(name = "idrezervare"),
-            inverseJoinColumns = @JoinColumn(name = "idoaspete")
-    )
-    private List<Oaspete> oaspeti;
+    @OneToOne(cascade = CascadeType.ALL )
+    @JoinColumn(name = "idplata")
+    private Plata plata;
+
+    @ManyToOne
+//    @JsonBackReference
+    @JoinColumn(name = "idoaspete")
+    private Oaspete oaspete;
 
     public Rezervare(){}
 
-    public Rezervare(Integer idRezervare, Integer persoane, LocalDate dataCheckIn, LocalDate dataCheckOut, Double total, List<Camera> camere, List<Oaspete> oaspeti) {
+    public Rezervare(Integer idRezervare, Integer persoane, LocalDate dataCheckIn, LocalDate dataCheckOut, Double total, List<Camera> camere, Plata plata, Oaspete oaspete) {
         this.idRezervare = idRezervare;
         this.persoane = persoane;
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.total = total;
         this.camere = camere;
-        this.oaspeti = oaspeti;
+        this.plata = plata;
+        this.oaspete = oaspete;
     }
 
     // Getters Setters
@@ -108,13 +114,34 @@ public class Rezervare {
         this.camere = camere;
     }
 
-    public List<Oaspete> getOaspeti() {
-        return oaspeti;
+    public Oaspete getOaspete() {
+        return oaspete;
     }
 
-    public void setOaspeti(List<Oaspete> oaspeti) {
-        this.oaspeti = oaspeti;
+    public void setOaspete(Oaspete oaspete) {
+        this.oaspete = oaspete;
+    }
+
+    public Plata getPlata() {
+        return plata;
+    }
+
+    public void setPlata(Plata plata) {
+        this.plata = plata;
     }
 
 
+    public void addCamera(Camera camera)
+    {
+        this.camere.add(camera);
+        camera.getRezervari().add(this);
+    }
+
+    public String getCodRezervare() {
+        return codRezervare;
+    }
+
+    public void setCodRezervare(String codRezervare) {
+        this.codRezervare = codRezervare;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.AdminDashboard.Controller;
 
 
+import com.example.AdminDashboard.DTO.CameraDTO;
 import com.example.AdminDashboard.Entity.Camera;
 import com.example.AdminDashboard.Service.CamereService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +21,8 @@ public class CamereController {
     }
 
     @GetMapping("/toateCamerele")
-    public List<Camera> findAll()
+    public List<CameraDTO> findAll()
     {
-        for(Camera camera: camereService.findAll())
-        {
-            System.out.println(camera.toString());
-        }
         return camereService.findAll();
-
     }
 }
