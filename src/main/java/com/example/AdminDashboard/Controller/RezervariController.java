@@ -41,5 +41,10 @@ public class RezervariController {
     {
         return rezervariService.saveRezervare(rezervareCreateDTO);
     }
+    @PutMapping("/{id}/updateRezervare")
+    public void updateRezervare(@PathVariable Integer id, @RequestBody RezervareCreateDTO rezervareCreateDTO)
+    {
+        rezervariService.updateRezervare(id,rezervareCreateDTO);
+    }
 }
 
