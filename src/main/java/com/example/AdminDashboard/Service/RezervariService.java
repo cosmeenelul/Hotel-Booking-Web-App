@@ -132,7 +132,7 @@ public class RezervariService {
         rezervare.setDataCheckOut(rezervareCreateDTO.getCheckOut());
         rezervare.setTotal(Utils
                 .totalPrice(rezervareCreateDTO.getCheckIn(),rezervareCreateDTO.getCheckOut(),camere));
-        rezervare.setCamere(camereValabile);
+        rezervare.setCamere(camere);
 
         Plata plata = plataDTOConverter.convertPlataDTOToPlata(rezervareCreateDTO.getPlata());
         rezervare.setPlata(plata);
