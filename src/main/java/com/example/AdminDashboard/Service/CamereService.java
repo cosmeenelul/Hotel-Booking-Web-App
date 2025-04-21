@@ -51,8 +51,34 @@ public class CamereService {
 
     public List<CameraDTO> findAvailableRoomsByDatesAndCapacity(LocalDate checkIn, LocalDate checkOut, Integer persoane){
         List<Camera> camere = camereRepository.findAvailableRoomsByDatesAndCapacity(checkIn,checkOut,persoane)
-                .orElseThrow(() -> new GlobalException("Nu exista camere libere in acel inteval sau nu exista camere cu acest numar de persoane"));
+                .orElseThrow(() -> new GlobalException("Nu exista camere libere in acel inteval"));
         
         return cameraDTOConverter.convertListCameraToListCameraDTO(camere);
     }
+
+    public String deleteById(Integer id)
+    {
+        camereRepository.deleteById(id);
+        return "Camera a fost stearsa cu succes!";
+    }
+
+    public CameraDTO updateCamera(Integer id, CameraDTO updatedCamera)
+    {
+        Camera oldCamera = camereRepository.findById(id).orElseThrow(() -> new GlobalException("Camera nu exista!"));
+
+        oldCamera.setTipCamera(updatedCamera.getTipCamera());
+        oldCamera.setNrPersoaneStandard(updatedCamera.getNrPersoaneStandard());
+        oldCamera.setPretPeNoapte(updatedCamera.getPretPeNoapte());
+
+        camereRepository.save(oldCamera);
+
+        return updatedCamera;
+    }
+
+    public String saveCamera(CameraDTO cameraDTO)
+    {
+        camereRepository.save(cameraDTOConverter.convertCameraDTOToCamera(cameraDTO));
+        return "Camera adaugata cu succes!";
+    }
+
 }
