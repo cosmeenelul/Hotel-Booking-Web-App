@@ -25,15 +25,21 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RezervariService {
+
+
     private final RezervariRepository rezervariRepository;
     private final RezervareCreateDTOConverter rezervareCreateDTOConverter;
     private final RezervareResponseDTOConverter rezervareResponseDTOConverter;
     private final CamereRepository camereRepository;
     private final OaspetiRepository oaspetiRepository;
     private final PlataDTOConverter plataDTOConverter;
+
+    @Autowired
+    EmailService emailService;
 
     public RezervariService(RezervariRepository rezervariRepository, RezervareCreateDTOConverter rezervareCreateDTOConverter,
                             RezervareResponseDTOConverter rezervareResponseDTOConverter, CamereRepository camereRepository, OaspetiRepository oaspetiRepository, PlataDTOConverter plataDTOConverter)
@@ -93,6 +99,19 @@ public class RezervariService {
         rezervare.setOaspete(oaspete);
 
         rezervariRepository.save(rezervare);
+
+        String destinatar = oaspete.getEmail();
+        String subiect = "Confirmare Rezervare - Cod Confirmare: " + rezervare.getCodRezervare();
+        String text = "Salut, " + oaspete.getNume() + "!\n\n"
+                + "Rezervarea ta a fost realizată cu succes.\n"
+                + "Check-in: " + rezervare.getDataCheckIn() + "\n"
+                + "Check-out: " + rezervare.getDataCheckOut() + "\n"
+                + "Camere: " + rezervare.getCamere().stream().map(Camera::getNrCamera).toList() + "\n"
+                + "Total: " + rezervare.getTotal() + " lei\n"
+                + "Cod Rezervare: " + rezervare.getCodRezervare();
+
+
+        emailService.trimiteEmailRezervare(destinatar,subiect,text);
 
         return rezervareCreateDTO;
     }
