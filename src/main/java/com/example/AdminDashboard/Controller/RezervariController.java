@@ -36,15 +36,26 @@ public class RezervariController {
         return rezervariService.findById(id);
     }
 
+
     @PostMapping("/addRezervare")
     public RezervareCreateDTO createRezervare(@RequestBody RezervareCreateDTO rezervareCreateDTO)
     {
         return rezervariService.saveRezervare(rezervareCreateDTO);
     }
+
+
     @PutMapping("/{id}/updateRezervare")
     public void updateRezervare(@PathVariable Integer id, @RequestBody RezervareCreateDTO rezervareCreateDTO)
     {
         rezervariService.updateRezervare(id,rezervareCreateDTO);
+    }
+
+
+
+    @DeleteMapping("/{id}/deleteRezervare")
+    public String deleteRezervareById(@PathVariable Integer id)
+    {
+        return rezervariService.deleteById(id);
     }
 }
 

@@ -23,24 +23,40 @@ public class OaspetiController {
         this.oaspetiService = oaspetiService;
     }
 
+    // GET REQUESTS
     @GetMapping("/totiOaspetii")
     public List<OaspeteDTOSimplu> findAll()
     {
         return oaspetiService.findAll();
     }
+    @GetMapping("/totiOaspetii/{id}")
+    public OaspeteDTO findOaspeteById(@PathVariable Integer id)
+    {
+        return oaspetiService.findById(id);
+    }
+    @GetMapping("/totiOaspetii/findByTelefon/{telefon}")
+    public OaspeteDTO findOaspeteByTelefon(@PathVariable String telefon)
+    {
+        return oaspetiService.findByTelefon(telefon);
+    }
 
+
+    //POST
     @PostMapping("/addOaspete")
     public Oaspete addOaspete(@RequestBody OaspeteDTOSimplu oaspeteDTOSimplu)
     {
         return oaspetiService.save(oaspeteDTOSimplu);
     }
 
+    //DELETE
     @DeleteMapping("/{id}/deleteOaspete")
     public String deleteById(@PathVariable Integer id)
     {
         return oaspetiService.deleteOaspeteById(id);
     }
 
+
+    //PUT
     @PutMapping("/{id}/updateOaspete")
     public String updateOaspete(@PathVariable Integer id,@RequestBody OaspeteDTOSimplu oaspeteDTOSimplu)
     {
