@@ -3,6 +3,8 @@ package com.example.AdminDashboard.Entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.ArrayList;
@@ -32,20 +34,36 @@ public class Oaspete {
     @Column(name="tara")
     private String tara;
 
-    @Column(name="telefon", unique = true)
+
+    @NotBlank(message = "Numarul de telefon este obligatoriu")
+    @Column(name="telefon", unique = true,nullable = false)
     private String telefon;
 
-    @Column(name = "email")
+    @Email
+    @NotBlank(message = "Email-ul este obligatoriu")
+    @Column(name = "email",nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "oaspete", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Rezervare> rezervari;
 
+    @NotBlank(message = "Parola este obligatorie")
+    @Column(name = "parola",nullable = false)
+    private String parola;
+
+    @Column(name = "rol")
+    private String rol = "user";
+
+    @Column(name = "esteactivat")
+    private Boolean esteActivat = false;
+
+
     public Oaspete(){
         this.rezervari = new ArrayList<>();
     }
 
-    public Oaspete(Integer idOaspete, String nume, String strada, String oras, String tara, String telefon,String email) {
+    public Oaspete(Integer idOaspete, String nume, String strada, String oras, String tara, String telefon,
+                   String email,String parola, String rol, Boolean esteActivat) {
         this.idOaspete = idOaspete;
         this.nume = nume;
         this.strada = strada;
@@ -53,6 +71,9 @@ public class Oaspete {
         this.tara = tara;
         this.telefon = telefon;
         this.email = email;
+        this.parola = parola;
+        this.rol = rol;
+        this.esteActivat = esteActivat;
     }
 
     public String getNume() {
@@ -126,5 +147,29 @@ public class Oaspete {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Boolean getEsteActivat() {
+        return esteActivat;
+    }
+
+    public void setEsteActivat(Boolean esteActivat) {
+        this.esteActivat = esteActivat;
+    }
+
+    public String getParola() {
+        return parola;
+    }
+
+    public void setParola(String parola) {
+        this.parola = parola;
     }
 }

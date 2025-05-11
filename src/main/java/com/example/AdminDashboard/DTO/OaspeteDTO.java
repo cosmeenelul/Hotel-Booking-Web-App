@@ -15,6 +15,9 @@ public class OaspeteDTO {
     private String tara;
     private String telefon;
     private String email;
+    private String parola;
+    private String rol;
+    private Boolean esteActivat;
 
     @JsonManagedReference
     private List<RezervareResponseDTO> rezervari;
@@ -22,7 +25,8 @@ public class OaspeteDTO {
     public OaspeteDTO(){}
 
     public OaspeteDTO(Integer idOaspete, String nume, String strada, String tara, String telefon,
-                      List<RezervareResponseDTO> rezervari, String oras, String prenume, String email) {
+                      List<RezervareResponseDTO> rezervari, String oras, String prenume,
+                      String email, String parola, String rol, Boolean esteActivat) {
         this.idOaspete = idOaspete;
         this.nume = nume;
         this.strada = strada;
@@ -32,6 +36,9 @@ public class OaspeteDTO {
         this.oras = oras;
         this.prenume = prenume;
         this.email = email;
+        this.parola = parola;
+        this.rol = rol;
+        this.esteActivat = esteActivat;
     }
 
     public Integer getIdOaspete() {
@@ -104,5 +111,29 @@ public class OaspeteDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getParola() {
+        return parola;
+    }
+
+    public void setParola(String parola) {
+        this.parola = parola;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Boolean getEsteActivat() {
+        return esteActivat;
+    }
+
+    public void setEsteActivat(Boolean esteActivat) {
+        this.esteActivat = esteActivat;
     }
 }

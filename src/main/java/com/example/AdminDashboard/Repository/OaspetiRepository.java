@@ -11,5 +11,7 @@ public interface OaspetiRepository extends JpaRepository<Oaspete,Integer> {
 
     Optional<Oaspete> findByTelefon(String telefon);
 
+    boolean existsByEmail(String email);
 
+    Optional<Oaspete> findByEmail(String email);
 }
