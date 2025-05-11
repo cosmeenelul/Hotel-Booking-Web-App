@@ -6,12 +6,16 @@ import com.example.AdminDashboard.Converter.OaspeteDTOSimpluConverter;
 import com.example.AdminDashboard.DTO.OaspeteDTO;
 import com.example.AdminDashboard.DTO.OaspeteDTOSimplu;
 import com.example.AdminDashboard.Entity.Oaspete;
+import com.example.AdminDashboard.Entity.Token;
 import com.example.AdminDashboard.Exception.GlobalException;
 import com.example.AdminDashboard.Repository.OaspetiRepository;
+import com.example.AdminDashboard.Repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +29,12 @@ public class OaspetiService {
     private OaspeteDTOSimpluConverter oaspeteDTOSimpluConverter;
 
     private final OaspetiRepository oaspetiRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TokenRepository tokenRepository;
 
     public OaspetiService(OaspetiRepository oaspetiRepository)
     {
@@ -104,5 +114,56 @@ public class OaspetiService {
         oaspetiRepository.save(oaspeteExistent);
 
         return "Oaspetele a fost modificat cu succes !";
+    }
+
+    // FIND BY EMAIL
+
+    public Optional<Oaspete> findByEmail(String email)
+    {
+        Oaspete oaspete = oaspetiRepository.findByEmail(email).orElseThrow(() -> new GlobalException("Utilizatorul cu acest email nu exista!"));
+
+        return Optional.ofNullable(oaspete);
+
+    }
+
+    // AUTHENTICATION LOGIC
+
+    public Oaspete findOrSaveOaspete(OaspeteDTOSimplu oaspeteDTOSimplu) {
+        Optional<Oaspete> existingOaspete = oaspetiRepository.findByEmail(oaspeteDTOSimplu.getEmail());
+
+        if (existingOaspete.isPresent()) {
+            return existingOaspete.get();
+        } else {
+            Oaspete oaspete = oaspeteDTOSimpluConverter.convertOaspeteDTOSimpluToOaspete(oaspeteDTOSimplu);
+            return oaspetiRepository.save(oaspete);
+        }
+    }
+
+
+    public void saveOaspeteVerificationToken(Oaspete oaspete, String verificationToken) {
+        Token token = new Token(oaspete, verificationToken);
+
+        tokenRepository.save(token);
+    }
+
+    public String validareToken(String verificareToken) {
+        Token token = tokenRepository.findByToken(verificareToken);
+
+        if(token == null)
+        {
+            return "Verificare invalida a token-ului!";
+        }
+        Oaspete oaspete = token.getOaspete();
+        Calendar calendar = Calendar.getInstance();
+
+        if(token.getTimpExpirare().getTime() <= calendar.getTime().getTime())
+        {
+            tokenRepository.delete(token);
+            return "Link-ul de verificare a expirat";
+        }
+        oaspete.setEsteActivat(true);
+        oaspetiRepository.save(oaspete);
+
+        return "valid";
     }
 }

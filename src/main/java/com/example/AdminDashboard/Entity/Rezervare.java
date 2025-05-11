@@ -41,7 +41,7 @@ public class Rezervare {
     )
     private List<Camera> camere;
 
-    @OneToOne(cascade = CascadeType.ALL )
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idplata")
     private Plata plata;
 

@@ -10,10 +10,12 @@ public class OaspeteDTOSimplu {
     private String tara;
     private String telefon;
     private String email;
+    private String parola;
 
     public OaspeteDTOSimplu(){}
 
-    public OaspeteDTOSimplu(Integer idOaspete, String nume, String prenume, String strada, String tara, String oras, String telefon, String email) {
+    public OaspeteDTOSimplu(Integer idOaspete, String nume, String prenume, String strada, String tara, String oras, String telefon, String email,
+                            String parola, String rol) {
         this.idOaspete = idOaspete;
         this.nume = nume;
         this.prenume = prenume;
@@ -22,6 +24,7 @@ public class OaspeteDTOSimplu {
         this.oras = oras;
         this.telefon = telefon;
         this.email = email;
+        this.parola = parola;
     }
 
     public Integer getIdOaspete() {
@@ -86,5 +89,13 @@ public class OaspeteDTOSimplu {
 
     public void setTara(String tara) {
         this.tara = tara;
+    }
+
+    public String getParola() {
+        return parola;
+    }
+
+    public void setParola(String parola) {
+        this.parola = parola;
     }
 }
