@@ -1,5 +1,7 @@
 package com.example.AdminDashboard.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class OaspeteDTOSimplu {
 
     private Integer idOaspete;
@@ -8,8 +10,14 @@ public class OaspeteDTOSimplu {
     private String strada;
     private String oras;
     private String tara;
+
+    @NotBlank(message = "Email-ul este obligatoriu")
     private String telefon;
+
+    @NotBlank(message = "Email-ul este obligatoriu")
     private String email;
+
+    @NotBlank(message = "Email-ul este obligatoriu")
     private String parola;
 
     public OaspeteDTOSimplu(){}

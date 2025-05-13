@@ -18,14 +18,12 @@ public class RegisterController {
     private final OaspetiService oaspetiService;
     private final ApplicationEventPublisher publisher;
     private final TokenRepository tokenRepository;
-    private final EmailService emailService;
 
-    public RegisterController(OaspetiService oaspetiService, ApplicationEventPublisher publisher, TokenRepository tokenRepository, EmailService emailService)
+    public RegisterController(OaspetiService oaspetiService, ApplicationEventPublisher publisher, TokenRepository tokenRepository)
     {
         this.oaspetiService = oaspetiService;
         this.publisher = publisher;
         this.tokenRepository = tokenRepository;
-        this.emailService = emailService;
     }
 
     @PostMapping

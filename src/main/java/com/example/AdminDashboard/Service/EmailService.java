@@ -14,19 +14,15 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailService;
 
-    // Modificarea metodei pentru suport HTML
     public void trimiteEmailRezervare(String destinatar, String subiect, String mesaj) {
         try {
-            // Creează mesajul de tip MIME
             MimeMessage mimeMessage = emailService.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
-            // Setează detaliile pentru email
             helper.setTo(destinatar);
             helper.setSubject(subiect);
-            helper.setText(mesaj, true); // Al doilea parametru `true` setează conținutul ca HTML
+            helper.setText(mesaj, true);
 
-            // Trimite emailul
             emailService.send(mimeMessage);
 
         } catch (MessagingException e) {

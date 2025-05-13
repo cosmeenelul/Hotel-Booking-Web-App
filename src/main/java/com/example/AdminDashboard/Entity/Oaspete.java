@@ -40,7 +40,7 @@ public class Oaspete {
     private String telefon;
 
     @Email
-    @NotBlank(message = "Email-ul este obligatoriu")
+
     @Column(name = "email",nullable = false)
     private String email;
 

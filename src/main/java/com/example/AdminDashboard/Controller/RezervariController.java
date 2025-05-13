@@ -8,6 +8,7 @@ import com.example.AdminDashboard.Entity.Rezervare;
 import com.example.AdminDashboard.DTO.DetaliiRezervare;
 import com.example.AdminDashboard.Service.RezervariService;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,13 +44,11 @@ public class RezervariController {
         return rezervariService.saveRezervare(rezervareCreateDTO);
     }
 
-
     @PutMapping("/{id}/updateRezervare")
     public void updateRezervare(@PathVariable Integer id, @RequestBody RezervareCreateDTO rezervareCreateDTO)
     {
         rezervariService.updateRezervare(id,rezervareCreateDTO);
     }
-
 
 
     @DeleteMapping("/{id}/deleteRezervare")
