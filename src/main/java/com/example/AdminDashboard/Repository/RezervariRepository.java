@@ -16,4 +16,5 @@ public interface RezervariRepository extends JpaRepository<Rezervare,Integer> {
 
     @Query("SELECT r FROM Rezervare r WHERE r.oaspete.telefon = :telefon")
     List<Rezervare> findRezervareByTelefonOaspete(@Param("telefon") String telefon);
+    
 }

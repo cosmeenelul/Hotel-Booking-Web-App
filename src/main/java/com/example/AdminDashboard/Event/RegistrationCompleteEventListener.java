@@ -41,42 +41,56 @@ public class RegistrationCompleteEventListener
         String url = event.getApplicationUrl() + "/register/verificareEmail?token=" + verificationToken;
 
         String subiect = "Bine ai venit la ETTI Hotel! Confirmă-ți înregistrarea";
-        String mesaj = """
-    <html>
-        <head>
-            <style>
-                h1 {
-                    color: #2c3e50;
-                    font-family: Arial, sans-serif;
-                }
-                p {
-                    font-family: Arial, sans-serif;
-                    font-size: 16px;
-                }
-                .button {
-                    display: inline-block;
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    color: #fff;
-                    background-color: #3498db;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Bine ai venit la Hotelul Nostru!</h1>
-            <p>Salut,</p>
-            <p>Îți mulțumim că te-ai înregistrat cu succes pe platforma noastră. Pentru a activa contul și a finaliza procesul de înregistrare, te rugăm să confirmi adresa ta de email apăsând pe butonul de mai jos:</p>
-            <p style="text-align: center;">
-                <a href="%s" class="button">Confirmă-ți contul</a>
-            </p>
-            <p>Dacă nu ai solicitat acest cont, te rugăm să ignori acest mesaj.</p>
-            <p>Cu stimă,<br> Echipa ETTI Hotel</p>
-        </body>
-    </html>
-    """.formatted(url);
-
+        String mesaj =  """
+<html>
+<head>
+    <style>
+        h1 {
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        p {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #3498db;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .danger {
+            color: #b71c1c;
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+            padding: 10px 15px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Bine ai venit la ETTI Hotel!</h1>
+    <p>Salut,</p>
+    <p>Îți mulțumim că te-ai înregistrat cu succes pe platforma noastră. 
+        Pentru a activa contul și a finaliza procesul de înregistrare, 
+        te rugăm să confirmi adresa ta de email apăsând pe butonul de mai jos:</p>
+    <h1 class="danger">ATENȚIE, ACEST LINK EXPIRĂ ÎN 10 MINUTE!</h1>
+    <p style="text-align: center;">
+        <a href="%s" class="button">Confirmă-ți contul</a>
+    </p>
+    <p>Dacă nu ai solicitat acest cont, te rugăm să ignori acest mesaj.</p>
+    <p>Cu stimă,<br> Echipa ETTI Hotel</p>
+</body>
+</html>
+""".formatted(url);
 
         emailService.trimiteEmailRezervare(oaspeteDTOSimplu.getEmail(),subiect,mesaj);
 

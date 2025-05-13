@@ -23,6 +23,9 @@ public class Camera {
     @Column(name="pretpenoapte")
     private Double pretPeNoapte;
 
+    @Column(name="linkimg")
+    private String linkImagine;
+
     @ManyToMany(mappedBy = "camere")
     @JsonIgnore
     private List<Rezervare> rezervari;
@@ -31,12 +34,14 @@ public class Camera {
         this.rezervari = new ArrayList<>();
     }
 
-    public Camera(Integer nrCamera, String tipCamera, Integer nrPersoaneStandard, Double pretPeNoapte) {
+    public Camera(Integer nrCamera, String tipCamera, Integer nrPersoaneStandard, Double pretPeNoapte, String linkImagine) {
         this.nrCamera = nrCamera;
         this.tipCamera = tipCamera;
         this.nrPersoaneStandard = nrPersoaneStandard;
         this.pretPeNoapte = pretPeNoapte;
+        this.linkImagine = linkImagine;
     }
+
 
     public Integer getNrCamera() {
         return nrCamera;
@@ -76,5 +81,13 @@ public class Camera {
 
     public void setRezervari(List<Rezervare> rezervari) {
         this.rezervari = rezervari;
+    }
+
+    public String getLinkImagine() {
+        return linkImagine;
+    }
+
+    public void setLinkImagine(String linkImagine) {
+        this.linkImagine = linkImagine;
     }
 }

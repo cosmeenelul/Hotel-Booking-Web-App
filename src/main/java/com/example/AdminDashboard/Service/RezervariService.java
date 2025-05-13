@@ -102,16 +102,100 @@ public class RezervariService {
 
         String destinatar = oaspete.getEmail();
         String subiect = "Confirmare Rezervare - Cod Confirmare: " + rezervare.getCodRezervare();
-        String text = "Salut, " + oaspete.getNume() + "!\n\n"
-                + "Rezervarea ta a fost realizată cu succes.\n"
-                + "Check-in: " + rezervare.getDataCheckIn() + "\n"
-                + "Check-out: " + rezervare.getDataCheckOut() + "\n"
-                + "Camere: " + rezervare.getCamere().stream().map(Camera::getNrCamera).toList() + "\n"
-                + "Total: " + rezervare.getTotal() + " lei\n"
-                + "Cod Rezervare: " + rezervare.getCodRezervare();
+        String mesajHTML = """
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        background-color: #f9f9f9;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 20px auto;
+                        background: #ffffff;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        padding: 20px;
+                    }
+                    .header {
+                        background-color: #3498db;
+                        color: white;
+                        padding: 10px 15px;
+                        border-radius: 8px 8px 0 0;
+                        text-align: center;
+                    }
+                    .header h1 {
+                        margin: 0;
+                        font-size: 24px;
+                    }
+                    .content {
+                        margin: 20px 0;
+                    }
+                    .content h2 {
+                        color: #2c3e50;
+                        font-size: 20px;
+                        margin-bottom: 10px;
+                    }
+                    .details p {
+                        margin: 5px 0;
+                        font-size: 16px;
+                    }
+                    .total {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 15px;
+                        color: #2c3e50;
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 20px;
+                        font-size: 14px;
+                        color: #888;
+                    }
+                    .footer p {
+                        margin: 5px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h1>Confirmare Rezervare - ETTI Hotel</h1>
+                    </div>
+                    <div class="content">
+                        <h2>Salut, %s!</h2>
+                        <p>Rezervarea ta a fost realizată cu succes. Detaliile sunt mai jos:</p>
+                        <div class="details">
+                            <p><strong>Check-in:</strong> %s</p>
+                            <p><strong>Check-out:</strong> %s</p>
+                            <p><strong>Camere:</strong> %s</p>
+                            <p class="total"><strong>Total:</strong> %s lei</p>
+                            <p><strong>Cod Rezervare:</strong> %s</p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Îți mulțumim pentru alegerea făcută!</p>
+                        <p>Cu stimă, echipa ETTI Hotel</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            """.formatted(
+                            oaspete.getNume(),
+                            rezervare.getDataCheckIn(),
+                            rezervare.getDataCheckOut(),
+                            rezervare.getCamere().stream().map(Camera::getNrCamera).map(String::valueOf).collect(Collectors.joining(", ")),
+                            rezervare.getTotal(),
+                            rezervare.getCodRezervare()
+                    );
 
-
-        emailService.trimiteEmailRezervare(destinatar,subiect,text);
+        emailService.trimiteEmailRezervare(destinatar,subiect,mesajHTML);
 
         return rezervareCreateDTO;
     }

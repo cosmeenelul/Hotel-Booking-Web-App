@@ -25,7 +25,7 @@ public class CamereController {
     {
         return camereService.findAll();
     }
-    @GetMapping("/verificaDisponibilitate")
+    @PostMapping("/verificaDisponibilitate")
     public List<CameraDTO> verificaDisponibilitate(@RequestBody DetaliiRezervare detaliiRezervare)
     {
         return camereService.findAvailableRoomsByDatesAndCapacity(detaliiRezervare.getCheckIn(),detaliiRezervare.getCheckOut(),

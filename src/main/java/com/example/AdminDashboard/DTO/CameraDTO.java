@@ -5,16 +5,17 @@ public class CameraDTO {
     private String tipCamera;
     private Integer nrPersoaneStandard;
     private Double pretPeNoapte;
+    private String linkImagine;
 
     public CameraDTO(){}
 
-    public CameraDTO(Integer nrCamera, String tipCamera, Integer nrPersoaneStandard, Double pretPeNoapte) {
+    public CameraDTO(Integer nrCamera, String tipCamera, Integer nrPersoaneStandard, Double pretPeNoapte, String linkImagine) {
         this.nrCamera = nrCamera;
         this.tipCamera = tipCamera;
         this.nrPersoaneStandard = nrPersoaneStandard;
         this.pretPeNoapte = pretPeNoapte;
+        this.linkImagine=linkImagine;
     }
-
 
 
     public Integer getNrCamera() {
@@ -47,5 +48,13 @@ public class CameraDTO {
 
     public void setPretPeNoapte(Double pretPeNoapte) {
         this.pretPeNoapte = pretPeNoapte;
+    }
+
+    public String getLinkImagine() {
+        return linkImagine;
+    }
+
+    public void setLinkImagine(String linkImagine) {
+        this.linkImagine = linkImagine;
     }
 }

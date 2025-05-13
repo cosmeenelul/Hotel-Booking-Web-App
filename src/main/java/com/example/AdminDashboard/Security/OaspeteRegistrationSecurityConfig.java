@@ -22,18 +22,19 @@ public class OaspeteRegistrationSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.cors()
-                .and().csrf().disable()
+        return http
+                .cors()
+                .and()
+                .csrf().disable()
                 .authorizeHttpRequests()
-                // Permite acces tuturor la /login și /register fără autentificare
                 .requestMatchers("/login", "/register/**").permitAll()
-                // Permite acces userilor doar la /camere/toateCamerele
-                .requestMatchers("/camere/toateCamerele").hasAuthority("user")
-                // Permite acces adminilor la toate endpoint-urile
+                .requestMatchers("/user/**").hasAuthority("user")
                 .anyRequest().hasAuthority("admin")
-                // Activare login
                 .and()
                 .formLogin()
-                .and().build();
+                .and()
+                .build();
     }
+
+
 }
