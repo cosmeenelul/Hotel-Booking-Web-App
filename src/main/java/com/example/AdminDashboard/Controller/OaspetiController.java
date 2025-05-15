@@ -25,18 +25,18 @@ public class OaspetiController {
     }
 
     // GET REQUESTS
-    @GetMapping("/totiOaspetii")
+    @GetMapping()
     public List<OaspeteDTOSimplu> findAll()
     {
         return oaspetiService.findAll();
     }
-    @GetMapping("/totiOaspetii/{id}")
+    @GetMapping("/{id}")
     public OaspeteDTO findOaspeteById(@PathVariable Integer id)
     {
         return oaspetiService.findById(id);
     }
-    @GetMapping("/totiOaspetii/findByTelefon/{telefon}")
-    public OaspeteDTO findOaspeteByTelefon(@PathVariable String telefon)
+    @GetMapping()
+    public OaspeteDTO findOaspeteByTelefon(@RequestParam String telefon)
     {
         return oaspetiService.findByTelefon(telefon);
     }
@@ -50,7 +50,7 @@ public class OaspetiController {
     }
 
     //DELETE
-    @DeleteMapping("/{id}/deleteOaspete")
+    @DeleteMapping("/{id}")
     public String deleteById(@PathVariable Integer id)
     {
         return oaspetiService.deleteOaspeteById(id);

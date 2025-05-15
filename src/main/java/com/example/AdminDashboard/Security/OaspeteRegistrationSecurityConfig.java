@@ -27,14 +27,25 @@ public class OaspeteRegistrationSecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/register/**").permitAll()
-                .requestMatchers("/user/**").hasAuthority("user")
-                .anyRequest().hasAuthority("admin")
+                .requestMatchers("/login", "/register/**").permitAll() // permisiune pentru rute publice
+                .requestMatchers("/user/**").hasAuthority("user")      // protejează rutele /user/*
+                .anyRequest().hasAuthority("admin")                   // protejează restul numai pentru admin
                 .and()
                 .formLogin()
+                .loginPage("/login")                              // pagină personalizată de login
+                .successHandler(customAuthenticationSuccessHandler()) // setează successHandler-ul personalizat
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")                // redirecționare după logout
+                .permitAll()
                 .and()
                 .build();
     }
 
-
+    @Bean
+    public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
+    }
 }

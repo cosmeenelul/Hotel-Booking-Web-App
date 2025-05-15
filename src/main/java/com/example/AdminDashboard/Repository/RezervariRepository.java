@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,5 +17,9 @@ public interface RezervariRepository extends JpaRepository<Rezervare,Integer> {
 
     @Query("SELECT r FROM Rezervare r WHERE r.oaspete.telefon = :telefon")
     List<Rezervare> findRezervareByTelefonOaspete(@Param("telefon") String telefon);
-    
+
+    @Query("SELECT r FROM Rezervare r WHERE :currentDate BETWEEN r.dataCheckIn AND r.dataCheckOut")
+    List<Rezervare> findRezervariActive(@Param("currentDate") LocalDate currentDate);
+
+
 }

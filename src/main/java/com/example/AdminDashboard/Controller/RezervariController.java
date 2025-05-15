@@ -3,15 +3,19 @@ package com.example.AdminDashboard.Controller;
 
 import com.example.AdminDashboard.DTO.RezervareCreateDTO;
 import com.example.AdminDashboard.DTO.RezervareResponseDTO;
+import com.example.AdminDashboard.DTO.RezervareSimplaDTO;
 import com.example.AdminDashboard.Entity.Camera;
 import com.example.AdminDashboard.Entity.Rezervare;
 import com.example.AdminDashboard.DTO.DetaliiRezervare;
 import com.example.AdminDashboard.Service.RezervariService;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/rezervari")
@@ -25,8 +29,8 @@ public class RezervariController {
     }
 
 
-    @GetMapping("/toateRezervarile")
-    public List<RezervareResponseDTO> findAll()
+    @GetMapping()
+    public List<RezervareSimplaDTO> findAll()
     {
         return rezervariService.findAll();
     }
@@ -43,6 +47,13 @@ public class RezervariController {
     {
         return rezervariService.saveRezervare(rezervareCreateDTO);
     }
+
+    @PostMapping()
+    public Rezervare findRezervareByCodRezervare(@RequestBody String codRezervare) {
+        return rezervariService.findRezervareByCodRezervare(codRezervare)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Rezervarea nu a fost găsită!"));
+    }
+
 
     @PutMapping("/{id}/updateRezervare")
     public void updateRezervare(@PathVariable Integer id, @RequestBody RezervareCreateDTO rezervareCreateDTO)
