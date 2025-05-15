@@ -4,10 +4,8 @@ package com.example.AdminDashboard.Service;
 import com.example.AdminDashboard.Converter.PlataDTOConverter;
 import com.example.AdminDashboard.Converter.RezervareCreateDTOConverter;
 import com.example.AdminDashboard.Converter.RezervareResponseDTOConverter;
-import com.example.AdminDashboard.DTO.CameraDTO;
-import com.example.AdminDashboard.DTO.OaspeteDTO;
-import com.example.AdminDashboard.DTO.RezervareCreateDTO;
-import com.example.AdminDashboard.DTO.RezervareResponseDTO;
+import com.example.AdminDashboard.Converter.RezervareSimplaDTOConverter;
+import com.example.AdminDashboard.DTO.*;
 import com.example.AdminDashboard.Entity.Camera;
 import com.example.AdminDashboard.Entity.Oaspete;
 import com.example.AdminDashboard.Entity.Plata;
@@ -19,12 +17,14 @@ import com.example.AdminDashboard.Repository.RezervariRepository;
 import com.example.AdminDashboard.Utils.Utils;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +41,9 @@ public class RezervariService {
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    private RezervareSimplaDTOConverter rezervareSimplaDTOConverter;
+
     public RezervariService(RezervariRepository rezervariRepository, RezervareCreateDTOConverter rezervareCreateDTOConverter,
                             RezervareResponseDTOConverter rezervareResponseDTOConverter, CamereRepository camereRepository, OaspetiRepository oaspetiRepository, PlataDTOConverter plataDTOConverter)
     {
@@ -54,10 +57,9 @@ public class RezervariService {
 
     // GET METHOD
 
-    public List<RezervareResponseDTO> findAll()
+    public List<RezervareSimplaDTO> findAll()
     {
-        return rezervareResponseDTOConverter.
-                convertListRezervareToListRezervareResponseDTO(rezervariRepository.findAll());
+        return rezervareSimplaDTOConverter.convertListRezervareToListRezervareSimplaDTO(rezervariRepository.findAll());
     }
 
     // GET METHOD BY ID
@@ -68,6 +70,14 @@ public class RezervariService {
                 .convertRezervareToRezervareResponseDTO(rezervariRepository.findById(id)
                         .orElseThrow(() -> new GlobalException("Rezervarea cu acest ID nu a fost gasita!")));
     }
+
+
+    // GET REZERVARE BY COD REZERVARE
+    public Optional<Rezervare> findRezervareByCodRezervare(String codRezervare)
+    {
+        return rezervariRepository.findRezervareByCodRezervare(codRezervare);
+    }
+
 
     // POST METHOD
 
@@ -263,6 +273,18 @@ public class RezervariService {
             throw new GlobalException("Rezervarea cu acest id nu exista sau a fost deja stearsa");
         }
         return "Rezervare stearsa cu succes !";
+    }
+
+    // GET STATISTICI
+
+
+    public List<RezervareResponseDTO> findRezervariActive()
+    {
+        List<RezervareResponseDTO> rezervareResponseDTOS = rezervareResponseDTOConverter
+                .convertListRezervareToListRezervareResponseDTO(rezervariRepository.findRezervariActive(LocalDate.now()));
+
+        return rezervareResponseDTOS;
+
     }
 
 }

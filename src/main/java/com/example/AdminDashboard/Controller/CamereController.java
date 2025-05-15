@@ -20,7 +20,7 @@ public class CamereController {
         this.camereService = camereService;
     }
 
-    @GetMapping("/toateCamerele")
+    @GetMapping()
     public List<CameraDTO> findAll()
     {
         return camereService.findAll();
@@ -44,7 +44,7 @@ public class CamereController {
         return camereService.updateCamera(id,cameraDTO);
     }
 
-    @DeleteMapping("/{id}/stergeCamera")
+    @DeleteMapping("/{id}")
     public String deleteCamera(@PathVariable Integer id)
     {
         return camereService.deleteById(id);

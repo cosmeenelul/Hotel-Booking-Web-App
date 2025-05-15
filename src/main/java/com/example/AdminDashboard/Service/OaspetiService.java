@@ -126,6 +126,15 @@ public class OaspetiService {
 
     }
 
+    // GET STATISTICI
+    public List<OaspeteDTOSimplu> findLoyalGuestsWithAtLeastThreeReservations()
+    {
+        List<OaspeteDTOSimplu> oaspeteDTOSimpli = oaspeteDTOSimpluConverter
+                .convertListOaspeteToListOaspeteDTOSimplu(oaspetiRepository.findLoyalGuestsWithAtLeastThreeReservations());
+
+        return oaspeteDTOSimpli;
+    }
+
     // AUTHENTICATION LOGIC
 
     public Oaspete findOrSaveOaspete(OaspeteDTOSimplu oaspeteDTOSimplu) {

@@ -24,5 +24,10 @@ public interface CamereRepository extends JpaRepository<Camera,Integer> {
                                                                 @Param("checkOut") LocalDate checkOut,
                                                                 @Param("persoane") Integer persoane);
 
-
+    @Query("SELECT c.nrCamera, SUM(r.total) AS venitTotal " +
+            "FROM Rezervare r " +
+            "JOIN r.camere c " +
+            "GROUP BY c.nrCamera " +
+            "ORDER BY venitTotal DESC")
+    List<Object[]> findTop3CamereByVenitTotal();
 }

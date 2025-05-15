@@ -81,4 +81,10 @@ public class CamereService {
         return "Camera adaugata cu succes!";
     }
 
+    public List<Object[]> findTop3Camere() {
+        List<Object[]> topCamere = camereRepository.findTop3CamereByVenitTotal();
+        return topCamere.size() > 3 ? topCamere.subList(0, 3) : topCamere;
+    }
+
+
 }
