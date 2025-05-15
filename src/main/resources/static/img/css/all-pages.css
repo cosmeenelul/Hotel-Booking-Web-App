@@ -1,0 +1,93 @@
+body{
+    background-image: url("Poze random/pexels-gustavorodrigues-1755288.jpg");
+    background-position: center;
+    background-repeat: 0;
+    min-height: 100vh;
+    background-size: cover;
+    flex-direction: column;
+    display:block;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+
+
+/* Header Navigatie */
+
+.navbar{
+    margin-bottom: 50px;
+    background-color: rgba(29, 27, 27, 0.2);
+    backdrop-filter: blur(10px);
+    top:0;          /* de aici in jos daca nu ii dau de cap la main (face navbarul sa te urmeze) */
+    width: 100%;
+    position: fixed;
+    z-index: 10;  /* UPDATE -> am dat de cap la main */
+}
+
+
+
+.btn-floating {
+    border: none; /* Remove the border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.btn-floating:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+.nav-link {
+    color: rgb(235, 233, 226); /* Default color */
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.nav-link:hover {
+    color: rgb(202, 182, 139); /* Light gray color on hover */
+}
+
+/* Footer */
+footer{
+    margin-top: 150px;
+    background-color: rgba(29, 27, 27, 0.2);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    z-index: 1;
+    position: relative; /* Ensure footer is positioned correctly */
+}
+
+/* Main */
+.container-main {
+    top: 6.2rem;
+    position: relative;
+    color: rgb(226, 225, 223); /* Default color for the text */
+    text-align: center;
+    margin: auto;
+    width: 1500px;
+    background-color: rgba(20, 20, 20, 0.3); /* Increase transparency for fade effect */
+    padding: 50px; /* General padding */
+    padding-top: 10px; /* Ensure content starts 10px below the top margin */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for blending */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container-main:hover {
+    background-color: rgba(20, 20, 20, 0.5); /* Slightly darker on hover */
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+
+@media (max-width: 768px){
+    
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+}
