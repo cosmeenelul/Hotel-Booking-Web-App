@@ -73,9 +73,11 @@ public class RezervariService {
 
 
     // GET REZERVARE BY COD REZERVARE
-    public Optional<Rezervare> findRezervareByCodRezervare(String codRezervare)
+    public RezervareSimplaDTO findRezervareByCodRezervare(String codRezervare)
     {
-        return rezervariRepository.findRezervareByCodRezervare(codRezervare);
+        return rezervareSimplaDTOConverter
+                .convertRezervareToRezervareSimplaDTO(rezervariRepository.findRezervareByCodRezervare(codRezervare).orElseThrow(() -> new GlobalException("REZERVAREA NU A FOST GASITA!")));
+
     }
 
 
@@ -102,7 +104,7 @@ public class RezervariService {
                 throw new GlobalException("Cel putin o camera din cele selectate nu este valabila in acea perioada");
             }
         }
-        Oaspete oaspete = oaspetiRepository.findById(rezervareCreateDTO.getIdOaspete())
+        Oaspete oaspete = oaspetiRepository.findByTelefon(rezervareCreateDTO.getTelefon())
                 .orElseThrow(() -> new GlobalException("Oaspetele nu exista in sistem"));
 
         Rezervare rezervare = rezervareCreateDTOConverter.convertRezervareCreateDTOToRezervare(rezervareCreateDTO);
@@ -250,8 +252,8 @@ public class RezervariService {
         Plata plata = plataDTOConverter.convertPlataDTOToPlata(rezervareCreateDTO.getPlata());
         rezervare.setPlata(plata);
 
-        Integer idOaspete = rezervareCreateDTO.getIdOaspete();
-        Oaspete oaspete = oaspetiRepository.findById(idOaspete).orElseThrow(() -> new GlobalException("Oaspetele nu a fost gasit!"));
+        String telefon = rezervareCreateDTO.getTelefon();
+        Oaspete oaspete = oaspetiRepository.findByTelefon(telefon).orElseThrow(() -> new GlobalException("Oaspetele nu a fost gasit!"));
         rezervare.setOaspete(oaspete);
 
         rezervariRepository.save(rezervare);

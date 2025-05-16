@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+
+
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -41,6 +44,16 @@ public class RezervareCreateDTOConverter {
 
         List<Camera> camere = camereRepository.findAllById(rezervareCreateDTO.getCamere());
         PlataDTO plataDTO = rezervareCreateDTO.getPlata();
+        if(plataDTO.getMetoda().equals("CARD"))
+        {
+            plataDTO.setDataPlata(LocalDate.now());
+        }
+        else if(plataDTO.getMetoda().equals("CASH"))
+        {
+            plataDTO.setDataPlata(rezervareCreateDTO.getCheckOut());
+        }
+
+
         Plata plata = plataDTOConverter.convertPlataDTOToPlata(plataDTO);
 
 //        OaspeteDTO oaspeteDTO = rezervareCreateDTO.getOaspeteDTO();

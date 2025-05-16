@@ -1,0 +1,23 @@
+#nume {
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Push h1 to the left and h2 to the right */
+    align-items: center; /* Align items vertically */
+    width: 100%; /* Ensure the container spans the full width */
+    border-bottom: 2px solid white;
+    padding: 20px;
+}
+
+#imagine{
+    width: 50%;
+    height: 50%;
+}
+
+
+#ultimul{
+    margin-right: 200px;
+}
+@media (max-width:768px) {
+    #ultimul{
+        margin-right: 20px;
+    }
+}

@@ -35,12 +35,11 @@ public class OaspetiController {
     {
         return oaspetiService.findById(id);
     }
-    @GetMapping()
+    @GetMapping("/search")
     public OaspeteDTO findOaspeteByTelefon(@RequestParam String telefon)
     {
         return oaspetiService.findByTelefon(telefon);
     }
-
 
     //POST
     @PostMapping("/addOaspete")
