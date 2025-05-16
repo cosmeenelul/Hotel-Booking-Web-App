@@ -1,0 +1,33 @@
+#nume {
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Push h1 to the left and h2 to the right */
+    align-items: center; /* Align items vertically */
+    width: 100%; /* Ensure the container spans the full width */
+}
+
+.card{
+    margin:20px;
+    height: 150px;
+    border:none;
+    background: linear-gradient(135deg, rgba(202, 182, 139, 1), rgba(235, 221, 178, 0.3), rgba(202, 182, 139, 1));
+    color: rgb(216, 216, 216);
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    color:white;
+    box-shadow: 0px 0px 10px rgba(202, 182, 139, 1);
+}
+
+
+@media (max-width: 768px) {
+    .container-main {
+        width: 100%; /* Full width on smaller screens */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    
+    .card {
+        margin: 10px; /* Adjust margin for smaller screens */
+        height: auto; /* Allow cards to adjust height based on content */
+    }
+}

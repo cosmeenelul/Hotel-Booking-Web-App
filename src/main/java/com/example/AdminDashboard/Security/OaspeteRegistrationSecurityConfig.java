@@ -23,22 +23,24 @@ public class OaspeteRegistrationSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors()
+                .cors() // Activează suportul pentru CORS, dacă este necesar
                 .and()
-                .csrf().disable()
+                .csrf().disable() // Dezactivează CSRF pentru a permite cereri neautentificate în timpul testării
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/register/**").permitAll() // permisiune pentru rute publice
-                .requestMatchers("/user/**").hasAuthority("user")      // protejează rutele /user/*
-                .anyRequest().hasAuthority("admin")                   // protejează restul numai pentru admin
+                // Permite accesul liber la rutele și resursele statice:
+                .requestMatchers("/login", "/register", "/oaspeti/**", "/rezervari", "/rezervari/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**","/static").permitAll() // Încarcă fișierele statice
+                .requestMatchers("/user/**").hasAuthority("user") // Protejează resursele specifice
+                .anyRequest().authenticated() // Orice altă resursă necesită autentificare
                 .and()
                 .formLogin()
-                .loginPage("/login")                              // pagină personalizată de login
-                .successHandler(customAuthenticationSuccessHandler()) // setează successHandler-ul personalizat
+                .loginPage("/login") // Pagină personalizată de login
+                .defaultSuccessUrl("/rezervari", true) // Redirecționează utilizatorii după login
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")                // redirecționare după logout
+                .logoutUrl("/logout") // URL-ul pentru logout
+                .logoutSuccessUrl("/login?logout") // Redirecționează după logout
                 .permitAll()
                 .and()
                 .build();
@@ -48,4 +50,5 @@ public class OaspeteRegistrationSecurityConfig {
     public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
         return new CustomAuthenticationSuccessHandler();
     }
+
 }

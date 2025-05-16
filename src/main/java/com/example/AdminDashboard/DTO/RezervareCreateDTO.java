@@ -12,11 +12,11 @@ public class RezervareCreateDTO {
     private List<Integer> camere;
     private PlataDTO plata;
     private Double total;
-    private Integer idOaspete;
+    private String telefon;
 
     public RezervareCreateDTO(){}
 
-    public RezervareCreateDTO(Integer idRezervare, Integer persoane, LocalDate checkIn, List<Integer> camere, PlataDTO plata, Double total, LocalDate checkOut, Integer idOaspete) {
+    public RezervareCreateDTO(Integer idRezervare, Integer persoane, LocalDate checkIn, List<Integer> camere, PlataDTO plata, Double total, LocalDate checkOut, String telefon) {
         this.idRezervare = idRezervare;
         this.persoane = persoane;
         this.checkIn = checkIn;
@@ -24,7 +24,7 @@ public class RezervareCreateDTO {
         this.plata = plata;
         this.total = total;
         this.checkOut = checkOut;
-        this.idOaspete = idOaspete;
+        this.telefon = telefon;
     }
 
     public Double getTotal() {
@@ -83,11 +83,11 @@ public class RezervareCreateDTO {
         this.idRezervare = idRezervare;
     }
 
-    public Integer getIdOaspete() {
-        return idOaspete;
+    public String getTelefon() {
+        return telefon;
     }
 
-    public void setIdOaspete(Integer idOaspete) {
-        this.idOaspete = idOaspete;
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
     }
 }

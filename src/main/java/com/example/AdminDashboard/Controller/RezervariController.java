@@ -11,13 +11,15 @@ import com.example.AdminDashboard.Service.RezervariService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(path = "/rezervari")
 public class RezervariController {
 
@@ -30,16 +32,25 @@ public class RezervariController {
 
 
     @GetMapping()
-    public List<RezervareSimplaDTO> findAll()
-    {
-        return rezervariService.findAll();
+    public String getAllRezervari(Model model) {
+        List<RezervareSimplaDTO> rezervari = rezervariService.findAll();
+        model.addAttribute("rezervari", rezervari);
+        return "rezervari"; // Numele fișierului HTML Thymeleaf (rezervari.html)
     }
 
+
     @GetMapping("/{id}")
-    public RezervareResponseDTO findById(@PathVariable Integer id)
-    {
-        return rezervariService.findById(id);
+    public String showRezervareDetails(@PathVariable Integer id, Model model) {
+        try {
+            RezervareResponseDTO rezervare = rezervariService.findById(id);
+            model.addAttribute("rezervare", rezervare);
+            return "detalii-rezervare";
+        } catch (Exception e) {
+            model.addAttribute("error", "Rezervarea cu ID-ul " + id + " nu a fost găsită!");
+            return "rezervari"; // Redirecționează în cazul unei erori
+        }
     }
+
 
 
     @PostMapping("/addRezervare")
@@ -48,11 +59,28 @@ public class RezervariController {
         return rezervariService.saveRezervare(rezervareCreateDTO);
     }
 
-    @PostMapping()
-    public Rezervare findRezervareByCodRezervare(@RequestBody String codRezervare) {
-        return rezervariService.findRezervareByCodRezervare(codRezervare)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Rezervarea nu a fost găsită!"));
+    @PostMapping("/cauta")
+    public String findRezervareByCodRezervare(@RequestParam String codRezervare, Model model) {
+        RezervareSimplaDTO rezervare = null;
+        try {
+            // Încearcă să găsești rezervarea
+            rezervare = rezervariService.findRezervareByCodRezervare(codRezervare);
+
+        } catch (Exception e) {
+            // Tratăm situațiile în care căutarea eșuează
+            model.addAttribute("notFound", true);
+        }
+
+        // Dacă rezervarea este găsită, o adăugăm la model
+        if (rezervare != null) {
+            model.addAttribute("rezervari", List.of(rezervare)); // Trimitem rezervarea sub formă de listă
+        }
+
+        // Reîntoarcem pagina Thymeleaf
+        return "rezervari";
     }
+
+
 
 
     @PutMapping("/{id}/updateRezervare")
@@ -65,7 +93,10 @@ public class RezervariController {
     @DeleteMapping("/{id}/deleteRezervare")
     public String deleteRezervareById(@PathVariable Integer id)
     {
-        return rezervariService.deleteById(id);
+        rezervariService.deleteById(id);
+        return "redirect:/stergere-succes.html";
     }
+
+
 }
 
