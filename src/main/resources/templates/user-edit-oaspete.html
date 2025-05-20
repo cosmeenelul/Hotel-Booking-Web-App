@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" th:href="@{/Logouri/Logo-final.png}">
+  <title>Editeaza</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/all-pages.css}">
+  <link rel="stylesheet" th:href="@{/css/style-edit-oasp.css}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div th:if="${successMessage}"
+     class="alert alert-success alert-dismissible fade show"
+     role="alert"
+     style="margin: 20px;">
+  <strong th:text="${successMessage}">Success!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:if="${errorMessage}"
+     class="alert alert-danger alert-dismissible fade show"
+     role="alert"
+     style="margin: 20px;">
+  <strong th:text="${errorMessage}">Error!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+
+<section class="h-100 h-custom" style="margin-top:80px;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="background: none;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-12 bg-indigo text-white" style="border-radius: 15px;">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5">Editare Detalii Oaspete</h3>
+
+                  <!-- Aici vine noul formular -->
+                  <form th:action="@{/user/contulMeu/edit}" th:object="${oaspete}" method="post">
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="text" id="nume" th:field="*{nume}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="nume">Nume</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="text" id="prenume" th:field="*{prenume}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="prenume">Prenume</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="text" id="oras" th:field="*{oras}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="oras">Oraș</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="text" id="tara" th:field="*{tara}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="tara">Țară</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="text" id="strada" th:field="*{strada}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="strada">Strada</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <input type="email" id="email" th:field="*{email}"
+                               class="form-control form-control-lg" required />
+                        <label class="form-label" for="email">Email</label>
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <div class="form-outline form-white">
+                        <input type="text" id="telefon" th:field="*{telefon}"
+                               class="form-control form-control-lg" required/>
+                        <label class="form-label" for="telefon">Telefon</label>
+                      </div>
+                    </div>
+
+                    <!-- Mesaje de eroare/succes -->
+                    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                      <i class="fas fa-check-circle me-2"></i>
+                      <span th:text="${successMessage}"></span>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Mesaj de eroare -->
+                    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <i class="fas fa-exclamation-circle me-2"></i>
+                      <span th:text="${errorMessage}"></span>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-light btn-lg">Salvează modificările</button>
+                  </form>
+                  <!-- Sfârșitul formularului -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+<script>
+  function myFunction() {
+    var x = document.getElementById("parola");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ascunde alertele după 5 secunde
+    setTimeout(function() {
+      var alerts = document.querySelectorAll('.alert');
+      alerts.forEach(function(alert) {
+        var bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      });
+    }, 5000);
+  });
+</script>
+
+</html>

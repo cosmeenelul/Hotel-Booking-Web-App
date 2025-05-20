@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/camere")
+@RequestMapping(path = "/admin/camere")
 public class CamereController {
 
     private final CamereService camereService;

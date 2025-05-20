@@ -1,7 +1,14 @@
 
-.card{
-    margin:20px;
-    height: 263px;
+.card {
+    display: flex; /* Activează flexbox pentru alinierea conținutului */
+    flex-direction: column; /* Stivuiește imaginea și conținutul pe verticală */
+    margin: 20px;
+    height: auto; /* Permite cardului să se ajusteze în funcție de conținut */
+    max-height: 300px; /* Poți limita înălțimea totală dacă vrei */
+}
+
+.card .col-md-4 {
+    flex: 1; /* Permite imaginii să preia dimensiunile potrivite */
 }
 
 #imagine{
@@ -115,4 +122,29 @@
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     appearance: auto; /* Asigură afișarea lor */
+}
+
+
+/* Pentru a asigura că imaginea stă în container */
+.img-fluid {
+    object-fit: cover; /* Imaginea se adaptează containerului fără a-l depăși */
+    width: 100%; /* Se adaptează la lățimea containerului */
+    height: 100%; /* Se adaptează la înălțimea containerului */
+    max-width: 100%; /* Previne depășirea lățimii maxime a containerului */
+    max-height: 100%; /* Previne depășirea înălțimii maxime */
+    display: block; /* Elimină eventualele spații nedorite */
+}
+/*.col-md-4 {*/
+/*    position: relative; !* Rezolvă eventualele probleme de poziționare *!*/
+/*    overflow: hidden; !* Ascunde porțiunile imaginilor care ies *!*/
+/*    width: 100%; !* Lățimea ocupa în totalitate containerul *!*/
+/*    height: 200px; !* Setează înălțimea fixă *!*/
+/*}*/
+
+/* Pentru a forța imaginile să se conformeze containerului */
+.col-md-4 img {
+    width: 100%; /* Umple lățimea containerului */
+    height: 100%; /* Umple înălțimea containerului */
+    object-fit: cover; /* Decupează imaginea păstrând proporțiile */
+    display: block; /* Elimină spațiile suplimentare */
 }

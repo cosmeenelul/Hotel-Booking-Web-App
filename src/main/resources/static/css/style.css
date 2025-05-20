@@ -1,0 +1,106 @@
+
+.poze-hotel{
+    display:inline-block ;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding : 10px;
+    margin:10px;
+}
+
+.poze-hotel img{
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+#text1{
+    font-weight: bold;
+    margin-top:30px;
+}
+
+.carduri{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+}
+
+.card-text{
+    color:rgb(226, 225, 223);
+}
+
+
+.card-title{
+    color: rgb(226, 225, 223);
+}
+
+.btn1 {
+    background: linear-gradient(90deg, rgb(199, 177, 130), rgba(252, 237, 188, 0.8), rgb(199, 177, 130),rgb(199, 177, 130)); /* Default background color */
+    border: none;
+    color: rgb(226, 225, 223); /* Text color */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.4s ease,color 0.3s ease; /* Smooth transition */
+}
+
+.btn1:hover {
+    background-color: rgb(204, 187, 150); /* Default background color */
+    color: #ffffff; /* Keep the same text color on hover */
+    box-shadow: 0px 0px 13px rgba(253, 227, 142, 0.5); /* Enhance shadow on hover */
+}
+
+.card{
+
+    background-color: rgba(41, 41, 41, 0.5); 
+    border-color: rgba(253, 227, 142, 0.5);
+    box-shadow: 0px 0px 15px rgba(253, 227, 142, 0.5); /* Initial shadow */
+}
+
+img{
+    box-shadow: 0px 0px 100px rgba(253, 227, 142, 0.2); /* Initial shadow */
+}
+
+
+
+
+video{
+    position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.container-main{
+    background-color: transparent;
+    box-shadow: none; /* Remove shadow */
+    min-height: none;
+}
+
+.container-main:hover {
+    background-color: transparent; /* Keep it transparent on hover */
+    box-shadow: none; /* Remove shadow on hover */
+}
+
+
+footer{
+    width: 100%;
+}
+
+h1.display-4 {
+    font-size: 4rem; /* Mărimea textului mare */
+    font-weight: 700; /* Face textul mai îndrăzneț */
+    color: #ffffff; /* Culoare elegantă și ușor sofisticată */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adaugă un efect subtil de umbră */
+    text-align: center; /* Centrarea textului */
+    margin-top: 20px; /* Un spațiu suficient între titlu și elementele din partea de sus */
+    margin-bottom: 20px; /* Spațiu între titlu și secțiunile de dedesubt */
+    letter-spacing: 2px; /* Spațiere între litere pentru un aspect mai premium */
+    line-height: 1.2; /* Spațiere între rânduri dacă titlul este pe mai multe linii */
+}

@@ -5,10 +5,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 
 public class DetaliiRezervare {
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
     private Integer persoane;
 
