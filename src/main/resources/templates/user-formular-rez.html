@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" th:href="@{Logouri/Logo-final.png}">
+    <title>Rezervare noua</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/all-pages.css}">
+    <link rel="stylesheet" th:href="@{/css/style-formular-rez.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <div class="container">
+        <!-- Logo stânga -->
+        <a class="navbar-brand" th:href="@{/user/index}">
+            <img th:src="@{/img/Logo-final.png}" alt="Logo" style="border-radius: 50%; height: 40px; width: 40px;">
+        </a>
+
+        <!-- Buton mobil (hamburger) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Meniu dreapta -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/rezervarileMele}">Rezervari</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/contulMeu}">ContulMeu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/camere}">Camere</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <section>
+        <div class="container container-main">
+            <div class="input-date-container">
+                <form th:action="@{/user/rezervarileMele/creeazaRezervare}" method="post" th:object="${rezervareCreateDTO}">
+                    <div class="row first">
+                        <div class="input-date col-4">
+                            <label for="checkin" class="form-label">Check-In</label>
+                            <input type="date" id="checkin" class="form-control" th:field="*{checkIn}" required>
+                        </div>
+
+                        <div class="input-date col-4">
+                            <label for="checkout" class="form-label">Check-Out</label>
+                            <input type="date" id="checkout" class="form-control" th:field="*{checkOut}" required>
+                        </div>
+
+                        <div class="input-oaspeti col-4">
+                            <label for="numar-oaspeti" class="form-label">Nr.Oaspeti</label>
+                            <input type="number" id="numar-oaspeti" class="form-control" th:field="*{persoane}" min="1" max="10" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="selectul col-6">
+                            <label for="camere" class="form-label">Camere disponibile</label>
+                            <select id="camere" class="form-control select2" th:field="*{camere}" multiple="multiple" required>
+                                <option value="">Selectați camerele</option>
+                            </select>
+                        </div>
+
+                        <div class="plata col-6">
+                            <label for="metoda-plata" class="form-label">Metoda-plata</label>
+                            <select id="metoda-plata" th:field="*{plata.metoda}" class="form-control" required>
+                                <option value="">Selecteaza metoda de plata:</option>
+                                <option value="CASH">Cash</option>
+                                <option value="CARD">Card</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="submit-button" style="margin-top: 20px;">
+                        <button type="submit" class="btn btn1 btn-primary">Creează Rezervare</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<footer class="text-center text-white">
+    <!-- Grid container -->
+    <div class="container container-footer p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Contact - Support -->
+            <a class="btn btn-primary btn-floating m-1 rounded-circle" style="background-color: #46ce8e;"
+               th:href="@{/user/contact-support}" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-telephone-inbound-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM15.854.146a.5.5 0 0 1 0 .708L11.707 5H14.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 1 0v2.793L15.146.146a.5.5 0 0 1 .708 0" />
+                </svg>
+            </a>
+
+            <!-- Info - BD -->
+            <a class="btn btn-primary btn-floating m-1 rounded-circle" style="background-color: #52b8c5;"
+               th:href="@{/user/infoBD}" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-database-check" viewBox="0 0 16 16">
+                    <path
+                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514" />
+                    <path
+                            d="M12.096 6.223A5 5 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.5 4.5 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-.813-.927Q8.378 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.6 4.6 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10q.393 0 .774-.024a4.5 4.5 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777M3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4" />
+                </svg>
+            </a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(61, 56, 56, 0.2);">
+        ©2025 Toate drepturile rezervate.
+    </div>
+    <!-- Copyright -->
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#countrySelect').select2();
+        });
+    </script>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        // Inițializare Select2
+        $('#camere').select2();
+
+        // Adăugare event listeners pentru inputuri
+        $('#checkin, #checkout, #numar-oaspeti').change(function() {
+            verificaDisponibilitate();
+        });
+    });
+
+    function verificaDisponibilitate() {
+        const checkIn = $('#checkin').val();
+        const checkOut = $('#checkout').val();
+        const persoane = $('#numar-oaspeti').val();
+
+        if (checkIn && checkOut && persoane) {
+            $.ajax({
+                url: '/api/verificaDisponibilitate',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    checkIn: checkIn,
+                    checkOut: checkOut,
+                    persoane: parseInt(persoane)
+                }),
+                success: function(camereDisponibile) {
+                    $('#camere').empty();
+                    $('#camere').append('<option value="">Selectați camerele</option>');
+                    camereDisponibile.forEach(function(camera) {
+                        $('#camere').append(
+                            $('<option></option>')
+                                .val(camera.nrCamera)
+                                .text(`Camera ${camera.nrCamera} - ${camera.tipCamera} - ${camera.pretPeNoapte} RON/noapte`)
+                        );
+                    });
+                    $('#camere').trigger('change');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Eroare:', error);
+                    console.log('Status:', xhr.status);
+                    console.log('Response:', xhr.responseText);
+                    alert('A apărut o eroare la verificarea camerelor disponibile.');
+                }
+            });
+        }
+    }
+</script>
+</html>

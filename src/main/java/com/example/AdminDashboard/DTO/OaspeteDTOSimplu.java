@@ -11,13 +11,13 @@ public class OaspeteDTOSimplu {
     private String oras;
     private String tara;
 
-    @NotBlank(message = "Email-ul este obligatoriu")
+    @NotBlank(message = "Telefonul este obligatoriu")
     private String telefon;
 
     @NotBlank(message = "Email-ul este obligatoriu")
     private String email;
 
-    @NotBlank(message = "Email-ul este obligatoriu")
+    @NotBlank(message = "Parola este obligatorie")
     private String parola;
 
     public OaspeteDTOSimplu(){}

@@ -1,0 +1,203 @@
+   
+   /* Selectul de la camere */
+   .select2-container--default .select2-selection--multiple {
+      border: 1px solid #000000;
+      padding: 8px;
+      min-height: 36px;
+      border-radius: 4px;
+    }
+
+    .select2-selection__choice {            /*Schimba cardurile de select*/
+      background-color: #ff0000;
+      border: 1px solid #000000;
+      color: #000000;
+      padding: 2px 6px;
+      margin-top: 4px;
+    }
+
+    .select2-results__option--highlighted {           /*  asta e hoverul */
+      background:linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 0.1), rgba(202, 182, 139, 1)) !important;
+      color: rgb(255, 255, 255);
+    }
+
+    .select2-container--default .select2-results__option[aria-selected=true] {      /* optiune neselectata neparcursa cu mouse-ul */
+      background: linear-gradient(to right,rgb(131, 131, 131),rgb(192, 192, 192),rgb(211, 211, 211));
+      color: white;
+    }
+
+    .selectul{
+        display: flex;
+        flex-direction: column;
+        margin:auto;
+        text-align: center;
+    }
+
+
+
+.select2-container--default .select2-results__option[aria-selected="false"]:not(.select2-results__option--highlighted) {        /* Optiune neselctata*/
+  background-color: white; /* sau orice culoare vrei tu */
+  color: #000000;
+}
+
+.select2-container--default .select2-selection--multiple {      /* portiunea unde apar carduri */
+  background: linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 1), rgba(202, 182, 139, 1))  !important;
+}
+
+.select2-selection__choice {
+  background-color: #006cff;   /* albastru fundal */
+  color: white;                /* text alb */
+}
+
+.select2-selection__choice__remove {
+  color: white;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.select2-selection__choice__remove:hover {
+  color: #ffcccc;
+}
+
+footer{
+  bottom: 0;
+  position: fixed;
+}
+
+
+
+.input-date input {
+    background: linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 0.8), rgba(202, 182, 139, 1)); /* Cool gradient */
+    color: white; /* Text color for better contrast */
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Add rounded corners */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.input-date input:hover {
+    box-shadow: 0 8px 10px rgba(165, 153, 119, 0.3); /* Enhance shadow on hover */
+}
+
+
+
+.input-oaspeti input{
+    background: linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 0.8), rgba(202, 182, 139, 1));
+    color: white; /* Text color for better contrast */
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 7px; /* Add padding for better spacing */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+}
+.input-oaspeti input:hover {
+    box-shadow: 0 8px 10px rgba(165, 153, 119, 0.3); /* Enhance shadow on hover */
+}
+
+#text1{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.btn1 {
+    background: linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 0.8), rgba(202, 182, 139, 1)); /* Default background color */
+    border: none;
+    color: rgb(255, 255, 255); /* Text color */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 24px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition */
+}
+
+.btn1:hover {
+    box-shadow: 0px 0px 20px rgba(253, 227, 142, 0.5); /* Enhance shadow on hover */
+}
+
+
+/* General styles for smaller screens */
+@media (max-width: 1500px) {
+    .container-main {
+        width: 100%; /* Make the container take full width */
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .input-date-container {
+        flex-direction: column; /* Stack inputs and button vertically */
+        gap: 15px; /* Adjust spacing between elements */
+    }
+
+    .input-date, .input-oaspeti, .submit-button {
+        max-width: 100%; /* Allow elements to take full width */
+        flex: none; /* Prevent elements from growing unevenly */
+    }
+
+    .input-date input, .input-oaspeti input {
+        width: 100%; /* Make inputs take full width */
+    }
+
+    .btn1 {
+        width: 100%; /* Make the button take full width */
+        margin-top: 10px; /* Add spacing above the button */
+    }
+
+    nav .navbar-nav {
+        flex-direction: column; /* Stack navbar items vertically */
+        text-align: center; /* Center-align navbar links */
+    }
+
+    nav .navbar-brand img {
+        height: 30px; /* Reduce logo size */
+    }
+
+    footer .btn-floating {
+        margin: 5px; /* Reduce spacing between footer buttons */
+    }
+
+    footer .text-center {
+        font-size: 14px; /* Reduce font size for copyright text */
+    }
+
+    .select2-container--default .select2-selection--multiple {      /* portiunea unde apar carduri */
+        width: 250px;
+  }
+
+  
+}
+
+.container-main{
+    min-height: 10rem;
+    top:0;
+    display: flex;
+    flex-direction: column;
+}
+
+.jos{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+
+body {
+    margin: 0;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.last select{
+    margin-top: 8px;
+}
+
+.plata select{
+    background:linear-gradient(90deg, rgba(202, 182, 139, 1), rgba(241, 236, 220, 0.8), rgba(202, 182, 139, 1));
+    border:none;
+    color:white;
+}

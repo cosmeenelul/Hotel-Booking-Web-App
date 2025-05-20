@@ -1,5 +1,7 @@
 package com.example.AdminDashboard.DTO;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,7 +9,11 @@ public class RezervareCreateDTO {
 
     private Integer idRezervare;
     private Integer persoane;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
     private List<Integer> camere;
     private PlataDTO plata;

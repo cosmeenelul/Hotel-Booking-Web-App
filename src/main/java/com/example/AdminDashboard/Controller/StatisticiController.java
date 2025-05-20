@@ -10,6 +10,8 @@ import com.example.AdminDashboard.Service.OaspetiService;
 import com.example.AdminDashboard.Service.RezervariService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/statistici")
+@Controller
+@RequestMapping("/admin/statistici")
 public class StatisticiController {
-
-    @Autowired
-    private RezervariService rezervariService;
 
     @Autowired
     private OaspetiService oaspetiService;
@@ -30,29 +29,20 @@ public class StatisticiController {
     @Autowired
     private CamereService camereService;
 
-    @GetMapping("/rezervari")
-    List<RezervareResponseDTO> findRezervariActive()
-    {
-        return rezervariService.findRezervariActive();
-    }
 
 
-    @GetMapping("/oaspeti")
-    public List<OaspeteDTOSimplu> findLoyalGuestsWithAtLeastThreeReservations()
-    {
-        return oaspetiService.findLoyalGuestsWithAtLeastThreeReservations();
-    }
+    @GetMapping
+    public String getStatistici(Model model) {
+        // Lista de oaspeți fideli
+        List<OaspeteDTOSimplu> clientiFideli = oaspetiService.findLoyalGuestsWithAtLeastThreeReservations();
+        model.addAttribute("clientiFideli", clientiFideli);
 
-
-    @GetMapping("/camere")
-    public List<TopCamereTotalDTO> findTop3Camere()
-    {
+        // Lista celor mai rezervate camere
         List<Object[]> camereTotal = camereService.findTop3Camere();
         List<Integer> nrCamere = new ArrayList<>();
         List<Double> totalCamere = new ArrayList<>();
 
-        for(Object[] objects : camereTotal)
-        {
+        for (Object[] objects : camereTotal) {
             Integer nrCamera = (Integer) objects[0];
             Double total = (Double) objects[1];
 
@@ -71,13 +61,16 @@ public class StatisticiController {
         totaluri.add(totalCamere.get(2));
 
         List<TopCamereTotalDTO> topCamereTotalDTOS = new ArrayList<>();
-        for(int i=0;i<2;i++)
-        {
-            TopCamereTotalDTO topCamereTotalDTO = new TopCamereTotalDTO(totaluri.get(i),camere.get(i));
+        for (int i = 0; i < 3; i++) {
+            TopCamereTotalDTO topCamereTotalDTO = new TopCamereTotalDTO(totaluri.get(i), camere.get(i));
             topCamereTotalDTOS.add(topCamereTotalDTO);
         }
-        return topCamereTotalDTOS;
 
+        model.addAttribute("camereTop", topCamereTotalDTOS);
+
+
+        return "statistici";
     }
+
 
 }

@@ -10,6 +10,7 @@ import com.example.AdminDashboard.Entity.Token;
 import com.example.AdminDashboard.Exception.GlobalException;
 import com.example.AdminDashboard.Repository.OaspetiRepository;
 import com.example.AdminDashboard.Repository.TokenRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class OaspetiService {
 
     @Autowired
@@ -56,6 +58,14 @@ public class OaspetiService {
 
         return oaspeteDTOConverter.convertOaspeteToOaspeteDTO(oaspete);
     }
+
+    public OaspeteDTOSimplu findDTOSimpluById(Integer id) {
+        Oaspete oaspete = oaspetiRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Oaspete nu a fost găsit"));
+        return oaspeteDTOSimpluConverter.convertOaspeteToOaspeteDTOSimplu(oaspete);
+    }
+
+
 
     public boolean existsByTelefon(String telefon)
     {
@@ -95,7 +105,7 @@ public class OaspetiService {
     }
 
     // PUT METHOD OASPETE
-
+    @Transactional
     public String updateOaspete(Integer id, OaspeteDTOSimplu updatedOaspeteDTO)
     {
         Oaspete oaspeteExistent = oaspetiRepository.findById(id)
@@ -110,7 +120,7 @@ public class OaspetiService {
         oaspeteExistent.setOras(updatedOaspeteDTOConvertedToOaspete.getOras());
         oaspeteExistent.setTara(updatedOaspeteDTOConvertedToOaspete.getTara());
         oaspeteExistent.setTelefon(updatedOaspeteDTOConvertedToOaspete.getTelefon());
-
+//        oaspeteExistent.setParola(oaspeteExistent.getParola());
         oaspetiRepository.save(oaspeteExistent);
 
         return "Oaspetele a fost modificat cu succes !";

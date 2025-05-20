@@ -1,0 +1,125 @@
+.card{
+   background: linear-gradient(145deg, #e6e6e6, #c0c0c071, #f5f5f5, #bcbcbc);;
+    height: 400px;
+
+}
+
+.list-group-item{
+    color: rgb(56, 55, 55);
+    border-color:rgb(56, 55, 55);
+}
+
+.card img{
+    border-radius: 50%;
+}
+
+.search-bar {
+    max-width: 500px;
+
+}
+
+.search-bar .input-group {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar .form-control {
+    border: none;
+    padding-left: 20px;
+}
+
+.search-bar .btn {
+    border: none;
+    padding: 10px 20px;
+}
+
+.btn-new{
+    background: linear-gradient(145deg, #e6e6e6, #c0c0c0, #f5f5f5, #bcbcbc); /* Default background color */
+    border: none;
+    color: rgb(68, 68, 68); /* Text color */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.4s ease,color 0.3s ease; /* Smooth transition */
+}
+
+.btn-new:hover{
+    background-color: rgb(204, 187, 150); /* Default background color */
+    color: #ffffff; /* Keep the same text color on hover */
+    box-shadow: 0px 0px 20px rgba(128, 127, 125, 0.5); /* Enhance shadow on hover */
+}
+
+.container-butoane{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-edit{
+    background-color: rgba(177, 219, 77, 0.589);
+    color:#cfcfcf;
+    transition: transform 0.3s ease; 
+    margin-top: 20px;
+}
+
+.btn-edit:hover{
+    background-color: rgba(177, 219, 77, 0.9);
+    color:#ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 10px rgba(177, 219, 77, 0.9);
+}
+
+.btn-delete{
+    background-color: rgba(245, 0, 0, 0.589);
+    color:#cfcfcf;
+    transition: transform 0.3s ease;
+    margin-top: 20px; 
+}
+
+.btn-delete:hover{
+    background-color: rgba(245, 0, 0, 0.9);
+    color:#ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 10px rgba(245, 0, 0, 0.9);
+}
+
+.container-main {
+    min-height: 650px;
+    display: flex; /* Enable Flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align the card horizontally */
+    padding: 20px; /* Add padding to prevent overflow */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    overflow: visible; /* Allow content to overflow if necessary */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.card {
+    max-width: 100%; /* Ensure the card doesn't exceed the container width */
+    width: 100%; /* Make the card responsive */
+    height: auto; /* Allow the card to adjust its height based on content */
+    margin: 10px 0; /* Add spacing around the card */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+@media (max-width: 768px) {
+    .card {
+         height: auto; /* Allow cards to adjust height based on content */
+         margin-bottom:300px ;
+    }
+}
+
+
+form.delete-form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+

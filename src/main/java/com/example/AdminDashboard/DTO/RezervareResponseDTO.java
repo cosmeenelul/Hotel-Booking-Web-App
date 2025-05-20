@@ -16,13 +16,13 @@ public class RezervareResponseDTO {
     private PlataDTO plata;
     private Double total;
     private String codRezervare;
-
+    private String telefon;
     @JsonManagedReference
     private OaspeteDTOSimplu oaspeteDTOSimplu;
     public RezervareResponseDTO(){}
 
     public RezervareResponseDTO(Integer persoane, LocalDate checkIn, List<CameraDTO> camere, LocalDate checkOut, PlataDTO plata, Double total,String codRezervare
-    ,OaspeteDTOSimplu oaspeteDTOSimplu) {
+    ,OaspeteDTOSimplu oaspeteDTOSimplu, String telefon) {
         this.persoane = persoane;
         this.checkIn = checkIn;
         this.camere = camere;
@@ -31,6 +31,7 @@ public class RezervareResponseDTO {
         this.total = total;
         this.codRezervare = codRezervare;
         this.oaspeteDTOSimplu = oaspeteDTOSimplu;
+        this.telefon = oaspeteDTOSimplu.getTelefon();
     }
 
     public int getPersoane() {
@@ -106,5 +107,17 @@ public class RezervareResponseDTO {
 
     public void setOaspeteDTO(OaspeteDTOSimplu oaspeteDTOSimplu) {
         this.oaspeteDTOSimplu = oaspeteDTOSimplu;
+    }
+
+    public void setOaspeteDTOSimplu(OaspeteDTOSimplu oaspeteDTOSimplu) {
+        this.oaspeteDTOSimplu = oaspeteDTOSimplu;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
     }
 }

@@ -23,24 +23,22 @@ public class OaspeteRegistrationSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors() // Activează suportul pentru CORS, dacă este necesar
+                .cors()
                 .and()
-                .csrf().disable() // Dezactivează CSRF pentru a permite cereri neautentificate în timpul testării
+                .csrf().disable()
                 .authorizeHttpRequests()
-                // Permite accesul liber la rutele și resursele statice:
-                .requestMatchers("/login", "/register", "/oaspeti/**", "/rezervari", "/rezervari/**").permitAll()
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**","/static").permitAll() // Încarcă fișierele statice
-                .requestMatchers("/user/**").hasAuthority("user") // Protejează resursele specifice
-                .anyRequest().authenticated() // Orice altă resursă necesită autentificare
+                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/img/**", "/webjars/**", "/static/**").permitAll()
+                .requestMatchers("/admin/**").hasAuthority("admin") // Doar admin are acces la /admin/**
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login") // Pagină personalizată de login
-                .defaultSuccessUrl("/rezervari", true) // Redirecționează utilizatorii după login
+                .loginPage("/login")
+                .successHandler(customAuthenticationSuccessHandler())
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout") // URL-ul pentru logout
-                .logoutSuccessUrl("/login?logout") // Redirecționează după logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
                 .permitAll()
                 .and()
                 .build();

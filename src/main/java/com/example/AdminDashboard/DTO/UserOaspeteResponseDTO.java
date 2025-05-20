@@ -9,8 +9,9 @@ public class UserOaspeteResponseDTO {
     private String oras;
     private String tara;
     private String email;
+    private String telefon;
 
-    public UserOaspeteResponseDTO(String email, Integer idOaspete, String oras, String strada, String tara, String prenume, String nume) {
+    public UserOaspeteResponseDTO(String email, Integer idOaspete, String oras, String strada, String tara, String prenume, String nume, String telefon) {
         this.email = email;
         this.idOaspete = idOaspete;
         this.oras = oras;
@@ -18,6 +19,7 @@ public class UserOaspeteResponseDTO {
         this.tara = tara;
         this.prenume = prenume;
         this.nume = nume;
+        this.telefon = telefon;
     }
 
     public UserOaspeteResponseDTO() {
@@ -77,5 +79,13 @@ public class UserOaspeteResponseDTO {
 
     public void setStrada(String strada) {
         this.strada = strada;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
     }
 }

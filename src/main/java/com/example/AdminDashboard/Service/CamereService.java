@@ -52,7 +52,7 @@ public class CamereService {
     public List<CameraDTO> findAvailableRoomsByDatesAndCapacity(LocalDate checkIn, LocalDate checkOut, Integer persoane){
         List<Camera> camere = camereRepository.findAvailableRoomsByDatesAndCapacity(checkIn,checkOut,persoane)
                 .orElseThrow(() -> new GlobalException("Nu exista camere libere in acel inteval"));
-        
+        System.out.println("AM AJUNS AICI!!!!!");
         return cameraDTOConverter.convertListCameraToListCameraDTO(camere);
     }
 
