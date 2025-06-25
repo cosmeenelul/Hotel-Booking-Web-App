@@ -39,31 +39,16 @@ public class StatisticiController {
 
         // Lista celor mai rezervate camere
         List<Object[]> camereTotal = camereService.findTop3Camere();
-        List<Integer> nrCamere = new ArrayList<>();
-        List<Double> totalCamere = new ArrayList<>();
+
+        List<TopCamereTotalDTO> topCamereTotalDTOS = new ArrayList<>();
 
         for (Object[] objects : camereTotal) {
             Integer nrCamera = (Integer) objects[0];
             Double total = (Double) objects[1];
 
-            nrCamere.add(nrCamera);
-            totalCamere.add(total);
-        }
-
-        List<CameraDTO> camere = new ArrayList<>();
-        camere.add(camereService.findById(nrCamere.get(0)));
-        camere.add(camereService.findById(nrCamere.get(1)));
-        camere.add(camereService.findById(nrCamere.get(2)));
-
-        List<Double> totaluri = new ArrayList<>();
-        totaluri.add(totalCamere.get(0));
-        totaluri.add(totalCamere.get(1));
-        totaluri.add(totalCamere.get(2));
-
-        List<TopCamereTotalDTO> topCamereTotalDTOS = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            TopCamereTotalDTO topCamereTotalDTO = new TopCamereTotalDTO(totaluri.get(i), camere.get(i));
-            topCamereTotalDTOS.add(topCamereTotalDTO);
+            CameraDTO camera = camereService.findById(nrCamera);
+            TopCamereTotalDTO dto = new TopCamereTotalDTO(total, camera);
+            topCamereTotalDTOS.add(dto);
         }
 
         model.addAttribute("camereTop", topCamereTotalDTOS);

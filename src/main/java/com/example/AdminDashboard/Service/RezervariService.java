@@ -178,7 +178,7 @@ public class RezervariService {
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>Confirmare Rezervare - ETTI Hotel</h1>
+                        <h1>Confirmare Rezervare - Golden Peak Hotel</h1>
                     </div>
                     <div class="content">
                         <h2>Salut, %s!</h2>
@@ -193,7 +193,7 @@ public class RezervariService {
                     </div>
                     <div class="footer">
                         <p>Îți mulțumim pentru alegerea făcută!</p>
-                        <p>Cu stimă, echipa ETTI Hotel</p>
+                        <p>Cu stimă, echipa Golden Peak Hotel</p>
                     </div>
                 </div>
             </body>
@@ -307,7 +307,7 @@ public class RezervariService {
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>Confirmare Rezervare - ETTI Hotel</h1>
+                        <h1>Confirmare Rezervare - Golden Peak Hotel</h1>
                     </div>
                     <div class="content">
                         <h2>Salut, %s!</h2>
@@ -322,7 +322,7 @@ public class RezervariService {
                     </div>
                     <div class="footer">
                         <p>Îți mulțumim pentru alegerea făcută!</p>
-                        <p>Cu stimă, echipa ETTI Hotel</p>
+                        <p>Cu stimă, echipa Golden Peak Hotel</p>
                     </div>
                 </div>
             </body>
@@ -459,7 +459,7 @@ public class RezervariService {
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>Confirmare Actualizare Rezervare - ETTI Hotel</h1>
+                        <h1>Confirmare Actualizare Rezervare - Golden Peak Hotel</h1>
                     </div>
                     <div class="content">
                         <h2>Salut, %s!</h2>
@@ -474,7 +474,7 @@ public class RezervariService {
                     </div>
                     <div class="footer">
                         <p>Îți mulțumim pentru alegerea făcută!</p>
-                        <p>Cu stimă, echipa ETTI Hotel</p>
+                        <p>Cu stimă, echipa Golden Peak Hotel</p>
                     </div>
                 </div>
             </body>

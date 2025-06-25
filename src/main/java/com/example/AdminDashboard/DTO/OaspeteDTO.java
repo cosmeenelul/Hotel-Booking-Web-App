@@ -2,7 +2,6 @@ package com.example.AdminDashboard.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.List;
 
 public class OaspeteDTO {
