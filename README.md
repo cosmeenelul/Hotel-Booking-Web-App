@@ -100,7 +100,7 @@ BookingSystem/
 │       └── resources/
 │           ├── static/
 │           └── templates/
-
+```
 # EN LANGUAGE <img src="https://flagcdn.com/w40/gb.png" width="20" alt="UK Flag">
 
 ---
