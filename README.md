@@ -84,7 +84,108 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 BookingSystem/
 ├── .idea/
 ├── .mvn/
-├── pozeCamere/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/example/AdminDashboard/
+│       │       ├── Configuration/
+│       │       ├── Controller/
+│       │       ├── Converter/
+│       │       ├── DTO/
+│       │       ├── Entity/
+│       │       ├── Event/
+│       │       ├── Exception/
+│       │       ├── Repository/
+│       │       ├── Security/
+│       │       ├── Service/
+│       │       ├── Utils/
+│       │       └── AdminDashboardApplication.java
+│       └── resources/
+│           ├── static/
+│           └── templates/
+
+
+# EN LANGUAGE <img src="https://flagcdn.com/w40/gb.png" width="20" alt="UK Flag">
+
+---
+
+## 📸 Demo
+
+*(Add a YouTube link or a GIF showing the application in action here)*
+
+---
+
+## ⚙️ Technologies Used
+
+- **Backend**: Spring Boot, Spring MVC, Spring Security, Spring Data JPA, Java Mail, Thymeleaf  
+- **Frontend**: Bootstrap, JavaScript  
+- **Database**: MySQL  
+- **Others**: BCrypt, Token URI Confirmation, Maven  
+- **Build & Deploy**: Maven + Spring Boot CLI  
+
+---
+
+## 🧱 Architecture
+
+![Application Architecture](docs/arhitecture_web_app.png)
+
+*(Logical flow: Client → Controller → Service → Repository → DB)*
+
+---
+
+## 🗄️ Database Diagram
+
+![Database Diagram](src/main/resources/static/img/erd.webp)
+
+---
+
+## 🧩 Main Features
+
+### 👤 User
+
+- ✅ **Register** an account with **email confirmation token** (with expiration)  
+- ✅ **Login** + logout  
+- ✅ Password encryption using **BCrypt**  
+- ✅ **Create reservation** (generates invoice sent via email)  
+  - A **confirmation code** is included in the invoice, which can be used:
+    - to *search for the reservation*
+    - or to *provide it at the hotel reception for editing/cancellation*  
+- ✅ **View available rooms** filtered by:
+  - *Number of guests*
+  - *Check-in / Check-out date*  
+- ✅ **Edit and delete** account  
+
+---
+
+### 🔐 Administrator
+
+- ✅ **GET + Filtering** based on Check-in/Check-out date and number of guests  
+- ✅ Full **CRUD for guests**  
+- ✅ Full **CRUD for reservations**  
+- ✅ **Search guests** by **phone number**  
+- ✅ **Statistics page**:
+  - *Top 3 rooms* with the *highest revenue*
+  - *Most loyal guests* (based on number of reservations)  
+- ✅ Page showing **active reservations** (based on current date)  
+
+---
+
+## 🧠 Room Availability Logic
+
+- ✅ Custom backend query to check available rooms based on selected date range and number of guests  
+- ✅ Room selection via interactive form (selection bar), through a GET request  
+- ✅ Real-time reservation overlap check  
+- ✅ Corner cases handled:
+  - Users who do not confirm registration within **10 minutes** are automatically deleted from the database  
+
+---
+
+## 📁 Project Structure
+
+```text
+BookingSystem/
+├── .idea/
+├── .mvn/
 ├── src/
 │   └── main/
 │       ├── java/
