@@ -4,8 +4,6 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 
 # RO LANGUAGE <img src="https://flagcdn.com/w40/ro.png" width="20" alt="Romania Flag">
 
----
-
 ## 📸 Demo
 
 *(Adaugă aici un link YouTube sau un GIF cu aplicația în acțiune)*
