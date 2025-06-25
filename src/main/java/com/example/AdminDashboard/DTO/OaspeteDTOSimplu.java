@@ -1,5 +1,7 @@
 package com.example.AdminDashboard.DTO;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 
 public class OaspeteDTOSimplu {

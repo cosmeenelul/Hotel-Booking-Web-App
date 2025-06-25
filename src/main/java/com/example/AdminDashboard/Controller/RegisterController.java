@@ -50,7 +50,7 @@ public class RegisterController {
             );
 
             model.addAttribute("successMessage",
-                    "Înregistrat cu succes! Vă rugăm să verificați email-ul pentru a activa contul.");
+                    "Înregistrat cu succes! Vă rugăm să verificați email-ul pentru a activa contul. Verificați in SPAM !");
             return "formular-oaspete"; // rămânem pe aceeași pagină pentru a arăta mesajul
 
         } catch (Exception e) {
@@ -64,16 +64,16 @@ public class RegisterController {
         return "http://"+httpServletRequest.getServerName()+":"+httpServletRequest.getServerPort()+httpServletRequest.getContextPath();
     }
 
-    @GetMapping("/verificareEmail")
+    @GetMapping("/verificare-email")
     public String verificareEmail(@RequestParam("token") String token) {
         Token verificareToken = tokenRepository.findByToken(token);
-
+        System.out.println(token);
         if(verificareToken.getOaspete().getEsteActivat()) {
             return "already-verified";
         }
 
-        String rezultatVerificare = oaspetiService.validareToken(token);
-        if(rezultatVerificare.equals("valid")) {
+        String rezultatVerificare = oaspetiService.validareTok(token);
+        if(rezultatVerificare.equals("SUCCES")) {
             return "verification-succes";
         }
 

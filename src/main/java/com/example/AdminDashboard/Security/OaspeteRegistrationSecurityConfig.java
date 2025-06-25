@@ -27,7 +27,7 @@ public class OaspeteRegistrationSecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/img/**", "/webjars/**", "/static/**").permitAll()
+                .requestMatchers("/login", "/register/**", "/css/**", "/js/**", "/img/**", "/webjars/**", "/static/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("admin") // Doar admin are acces la /admin/**
                 .anyRequest().authenticated()
                 .and()

@@ -165,9 +165,9 @@ public class OaspetiService {
         tokenRepository.save(token);
     }
 
-    public String validareToken(String verificareToken) {
+    public String validareTok(String verificareToken) {
         Token token = tokenRepository.findByToken(verificareToken);
-
+        System.out.println("AM AJUNS LA VERIFICARE TOKEN");
         if(token == null)
         {
             return "Verificare invalida a token-ului!";
@@ -182,7 +182,8 @@ public class OaspetiService {
         }
         oaspete.setEsteActivat(true);
         oaspetiRepository.save(oaspete);
+        System.out.println("AM SETAT ACTIVAT");
 
-        return "valid";
+        return "SUCCES";
     }
 }

@@ -38,9 +38,9 @@ public class RegistrationCompleteEventListener
         oaspetiService.saveOaspeteVerificationToken(oaspete, verificationToken);
         log.info("SUCCES LA SALVAREA TOKENULUI!!");
 
-        String url = event.getApplicationUrl() + "/register/verificareEmail?token=" + verificationToken;
+        String url = event.getApplicationUrl() + "/register/verificare-email?token=" + verificationToken;
 
-        String subiect = "Bine ai venit la ETTI Hotel! Confirmă-ți înregistrarea";
+        String subiect = "Bine ai venit la Golden Peak Hotel! Confirmă-ți înregistrarea";
         String mesaj =  """
 <html>
 <head>
@@ -77,7 +77,7 @@ public class RegistrationCompleteEventListener
     </style>
 </head>
 <body>
-    <h1>Bine ai venit la ETTI Hotel!</h1>
+    <h1>Bine ai venit la Golden Peak Hotel!</h1>
     <p>Salut,</p>
     <p>Îți mulțumim că te-ai înregistrat cu succes pe platforma noastră. 
         Pentru a activa contul și a finaliza procesul de înregistrare, 
@@ -87,7 +87,7 @@ public class RegistrationCompleteEventListener
         <a href="%s" class="button">Confirmă-ți contul</a>
     </p>
     <p>Dacă nu ai solicitat acest cont, te rugăm să ignori acest mesaj.</p>
-    <p>Cu stimă,<br> Echipa ETTI Hotel</p>
+    <p>Cu stimă,<br> Echipa Golden Peak Hotel</p>
 </body>
 </html>
 """.formatted(url);

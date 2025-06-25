@@ -2,7 +2,7 @@
 <html lang="ro" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <link rel="icon" type="image/png" th:href="@{/img/Logo-final.png}">
+  <link rel="icon" type="image/png" th:href="@{/img/logo_golden_peak.png}">
   <title>Main Page</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/all-pages.css}">
@@ -21,7 +21,7 @@
   <div class="container">
     <!-- Logo stânga -->
     <a class="navbar-brand" th:href="@{/user/index}">
-      <img th:src="@{/img/Logo-final.png}" alt="Logo" style="border-radius: 50%; height: 40px; width: 40px;">
+      <img th:src="@{/img/logo_golden_peak.png}" alt="Logo" style="border-radius: 50%; height: 40px; width: 40px;">
     </a>
 
     <!-- Buton mobil (hamburger) -->
@@ -57,15 +57,14 @@
 <section>
   <div class="overlay" style="z-index: 1; position:relative;">
     <div class="container container-main d-grid justify-content-center">
-      <h1 id="text1" style="margin-bottom: 30px; text-decoration: underline;">Bun venit!</h1>
-      <p>
-        Bun venit pe pagina noastră! Aici puteți găsi informații despre disponibilitatea camerelor, rezervări și oaspeți.
-      </p>
-      <p>Hotelul nostru fictiv oferă o gamă variată de servicii pentru a vă face șederea cât mai plăcută.</p>
-      <p>Vă invităm să explorați site-ul nostru și să ne contactați pentru orice întrebări sau rezervări.</p>
-      <p>Restaurantul, barul și piscina sunt doar câteva dintre facilitățile pe care le oferim.</p>
-      <p>Organizăm și evenimente speciale, cum ar fi nunți, petreceri aniversare și conferințe.</p>
-      <p style="font-weight:bold; text-decoration: underline;">Vă urăm o zi cât mai bună și vă așteptăm cu drag!</p>
+      <section class="hero-banner py-5 text-white text-center" style="background: url('/img/banner.jpg') center/cover; height: 50vh; margin-bottom: 200px; margin-top: 150px;">
+        <div class="container">
+          <h1 class="display-4">Golden Peak Hotel</h1>
+          <h2 class="fw-bold">Relaxare, eleganță și rafinament</h2>
+          <h4 style="font-weight: lighter;">Te invităm să descoperi confortul hotelului nostru. O experiență unică te așteaptă!</h4>
+
+        </div>
+      </section>
 
       <!-- Carduri meniu -->
       <h2 id="text1" style="margin: 40px;">Meniu restaurant</h2>
