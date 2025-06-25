@@ -32,7 +32,7 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 
 ## 🗄️ Diagrama Bazei de Date
 
-![Diagrama baza de date](src/resources/main/resources/static/img/erd.webp)
+![Diagrama baza de date](src/main/resources/static/img/erd.webp)
 
 ---
 
