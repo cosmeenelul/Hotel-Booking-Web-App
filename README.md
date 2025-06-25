@@ -24,7 +24,7 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 
 ## 🧱 Arhitectură
 
-![Arhitectura aplicației](docs/architecture.png)
+![Arhitectura aplicației](docs/arhitecture_web_app.png)
 
 *(Schema logică: Client → Controller → Service → Repository → DB)*
 
