@@ -24,7 +24,6 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 
 ![Arhitectura aplicației](docs/arhitecture_web_app.png)
 
-*(Schema logică: Client → Controller → Service → Repository → DB)*
 
 ---
 
@@ -102,7 +101,6 @@ BookingSystem/
 │           ├── static/
 │           └── templates/
 
-
 # EN LANGUAGE <img src="https://flagcdn.com/w40/gb.png" width="20" alt="UK Flag">
 
 ---
@@ -126,8 +124,6 @@ BookingSystem/
 ## 🧱 Architecture
 
 ![Application Architecture](docs/arhitecture_web_app.png)
-
-*(Logical flow: Client → Controller → Service → Repository → DB)*
 
 ---
 
