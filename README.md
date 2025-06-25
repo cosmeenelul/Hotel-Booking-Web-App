@@ -6,9 +6,10 @@ A full-stack hotel booking system built with Spring Boot, MySQL, HTML/CSS/JS. It
 
 ## 📸 Demo
 
-[*(Videoclip de prezentare a aplicatiei)*](https://www.youtube.com/watch?v=0uAikZXXtNE)
+[**(Videoclip de prezentare a aplicatiei)**](https://www.youtube.com/watch?v=0uAikZXXtNE)
 
-![ClickGIF](https://www.youtube.com/watch?v=0uAikZXXtNE)
+![ClickGIF (2)](https://github.com/user-attachments/assets/0cf21ebb-fa7c-4b88-b1ce-dfcc5bfab131)
+
 ---
 
 ## ⚙️ Tehnologii folosite
@@ -108,9 +109,10 @@ BookingSystem/
 
 ## 📸 Demo
 
-[*(Application demo video)*](https://www.youtube.com/watch?v=0uAikZXXtNE)
+[**(Application demo video)**](https://www.youtube.com/watch?v=0uAikZXXtNE)
 
-![ClickGIF](https://www.youtube.com/watch?v=0uAikZXXtNE)
+![ClickGIF (2)](https://github.com/user-attachments/assets/0cf21ebb-fa7c-4b88-b1ce-dfcc5bfab131)
+
 ---
 
 ## ⚙️ Technologies Used
